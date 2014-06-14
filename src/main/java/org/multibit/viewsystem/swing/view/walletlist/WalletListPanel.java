@@ -40,12 +40,12 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.exchange.CurrencyConverter;
 import org.multibit.exchange.CurrencyConverterListener;
 import org.multibit.exchange.ExchangeRate;
-import org.multibit.model.bitcoin.WalletData;
-import org.multibit.model.bitcoin.WalletBusyListener;
+import org.multibit.model.logicoin.WalletData;
+import org.multibit.model.logicoin.WalletBusyListener;
 import org.multibit.utils.ImageLoader;
 import org.multibit.viewsystem.DisplayHint;
 import org.multibit.viewsystem.View;

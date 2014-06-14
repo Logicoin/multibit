@@ -1,8 +1,8 @@
 package org.multibit.viewsystem.swing.view.panels;
 
-import org.bitcoinj.wallet.Protos.Wallet.EncryptionType;
+import org.logicoinj.wallet.Protos.Wallet.EncryptionType;
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.utils.ImageLoader;
 import org.multibit.viewsystem.swing.action.CancelBackToParentAction;
 import org.multibit.viewsystem.swing.action.CreateNewReceivingAddressSubmitAction;

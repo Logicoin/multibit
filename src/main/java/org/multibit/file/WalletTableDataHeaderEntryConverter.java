@@ -1,9 +1,9 @@
 package org.multibit.file;
 
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.exchange.CurrencyConverter;
 import org.multibit.exchange.CurrencyInfo;
-import org.multibit.model.bitcoin.WalletTableData;
+import org.multibit.model.logicoin.WalletTableData;
 
 import com.googlecode.jcsv.writer.CSVEntryConverter;
 

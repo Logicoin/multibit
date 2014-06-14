@@ -15,17 +15,17 @@
  */
 package org.multibit.viewsystem.swing.action;
 
-import com.google.bitcoin.core.ECKey;
-import com.google.bitcoin.crypto.KeyCrypter;
-import com.google.bitcoin.crypto.KeyCrypterException;
-import org.bitcoinj.wallet.Protos.Wallet.EncryptionType;
-import org.multibit.controller.bitcoin.BitcoinController;
+import com.google.logicoin.core.ECKey;
+import com.google.logicoin.crypto.KeyCrypter;
+import com.google.logicoin.crypto.KeyCrypterException;
+import org.logicoinj.wallet.Protos.Wallet.EncryptionType;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.file.BackupManager;
 import org.multibit.file.FileHandler;
 import org.multibit.file.WalletSaveException;
 import org.multibit.message.Message;
 import org.multibit.message.MessageManager;
-import org.multibit.model.bitcoin.*;
+import org.multibit.model.logicoin.*;
 import org.multibit.store.MultiBitWalletVersion;
 import org.multibit.utils.ImageLoader;
 import org.multibit.viewsystem.swing.view.dialogs.CreateNewReceivingAddressDialog;
@@ -194,12 +194,7 @@ public class CreateNewReceivingAddressSubmitAction extends MultiBitSubmitAction 
                         synchronized (finalPerWalletModelData.getWallet()) {
                             finalPerWalletModelData.getWallet().addKeys(newKeys);
                         }
-
-                        // Recalculate the bloom filter.
-                        if (bitcoinController.getMultiBitService() != null) {
-                          bitcoinController.getMultiBitService().recalculateFastCatchupAndFilter();
-                        }
-
+                        
                         // Add keys to address book.
                         for (ECKey newKey : newKeys) {
                             lastAddressString = newKey.toAddress(finalController.getModel().getNetworkParameters()).toString();

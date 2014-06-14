@@ -1,4 +1,4 @@
-package org.multibit.model.bitcoin;
+package org.multibit.model.logicoin;
 
 
 /**

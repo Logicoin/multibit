@@ -18,22 +18,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.bitcoinj.wallet.Protos;
-import org.bitcoinj.wallet.Protos.ScryptParameters;
-import org.bitcoinj.wallet.Protos.Wallet.EncryptionType;
-import org.multibit.model.bitcoin.BitcoinModel;
-import org.multibit.model.bitcoin.WalletData;
-import org.multibit.model.bitcoin.WalletInfoData;
+import org.logicoinj.wallet.Protos;
+import org.logicoinj.wallet.Protos.ScryptParameters;
+import org.logicoinj.wallet.Protos.Wallet.EncryptionType;
+import org.multibit.model.logicoin.BitcoinModel;
+import org.multibit.model.logicoin.WalletData;
+import org.multibit.model.logicoin.WalletInfoData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.spongycastle.util.Arrays;
 
-import com.google.bitcoin.core.Utils;
-import com.google.bitcoin.core.Wallet;
-import com.google.bitcoin.crypto.EncryptedPrivateKey;
-import com.google.bitcoin.crypto.KeyCrypter;
-import com.google.bitcoin.crypto.KeyCrypterException;
-import com.google.bitcoin.crypto.KeyCrypterScrypt;
+import com.google.logicoin.core.Utils;
+import com.google.logicoin.core.Wallet;
+import com.google.logicoin.crypto.EncryptedPrivateKey;
+import com.google.logicoin.crypto.KeyCrypter;
+import com.google.logicoin.crypto.KeyCrypterException;
+import com.google.logicoin.crypto.KeyCrypterScrypt;
 import com.google.protobuf.ByteString;
 
 

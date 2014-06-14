@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.multibit.model.bitcoin;
+package org.multibit.model.logicoin;
 
-import com.google.bitcoin.core.Address;
-import com.google.bitcoin.core.ECKey;
-import com.google.bitcoin.core.Wallet;
+import com.google.logicoin.core.Address;
+import com.google.logicoin.core.ECKey;
+import com.google.logicoin.core.Wallet;
 import org.multibit.MultiBit;
 import org.multibit.file.WalletLoadException;
 import org.multibit.file.WalletSaveException;
@@ -30,7 +30,7 @@ import java.io.*;
 import java.util.*;
 
 /**
- * Wallet info is the companion info to the bitcoinj Wallet that multibit uses
+ * Wallet info is the companion info to the logicoinj Wallet that multibit uses
  * it contains the sending and receiving addresses and the wallet version.
  * 
  * It is stored in the same directory as the wallet and has the suffix ".info".
@@ -304,7 +304,7 @@ public class WalletInfoData {
         BufferedWriter out = null;
         try {
             // We write out all the receiving addresses.
-            HashMap<String, WalletAddressBookData> allReceivingAddresses = new HashMap<String, WalletAddressBookData>();
+            LinkedHashMap<String, WalletAddressBookData> allReceivingAddresses = new LinkedHashMap<String, WalletAddressBookData>();
             if (receivingAddresses != null) {
                 for (WalletAddressBookData addressBookData : receivingAddresses) {
                     allReceivingAddresses.put(addressBookData.address, addressBookData);

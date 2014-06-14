@@ -15,12 +15,12 @@
  */
 package org.multibit.viewsystem.swing.view.panels;
 
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.exchange.CurrencyConverter;
 import org.multibit.exchange.CurrencyConverterResult;
-import org.multibit.model.bitcoin.BitcoinModel;
-import org.multibit.model.bitcoin.WalletAddressBookData;
-import org.multibit.model.bitcoin.WalletInfoData;
+import org.multibit.model.logicoin.BitcoinModel;
+import org.multibit.model.logicoin.WalletAddressBookData;
+import org.multibit.model.logicoin.WalletInfoData;
 import org.multibit.model.core.CoreModel;
 import org.multibit.utils.ImageLoader;
 import org.multibit.viewsystem.DisplayHint;
@@ -466,6 +466,6 @@ public class ReceiveBitcoinPanel extends AbstractTradePanel implements Viewable 
 
     @Override
     public void checkDeleteSendingEnabled() {
-        // Not used on receive bitcoin panel.
+        // Not used on receive logicoin panel.
     }
 }

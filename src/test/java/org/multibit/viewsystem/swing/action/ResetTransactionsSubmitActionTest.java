@@ -20,7 +20,7 @@ import junit.framework.TestCase;
 import org.junit.Test;
 
 import org.multibit.CreateControllers;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.message.Message;
 import org.multibit.message.MessageManager;
 import org.multibit.viewsystem.swing.view.panels.ResetTransactionsPanel;

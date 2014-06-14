@@ -16,11 +16,11 @@
 
 package org.multibit.viewsystem.swing.view.walletlist;
 
-import com.google.bitcoin.core.DownloadListener;
+import com.google.logicoin.core.DownloadListener;
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.message.Message;
-import org.multibit.model.bitcoin.WalletData;
+import org.multibit.model.logicoin.WalletData;
 import org.multibit.network.ReplayManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

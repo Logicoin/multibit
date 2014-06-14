@@ -1,23 +1,25 @@
 <shortcuts> 
-   <programGroup defaultName="MultiBit" location="applications"/> 
-   <shortcut name="MultiBit ${project.version}" 
-             target="$INSTALL_PATH/multibit.exe" 
-             description="MultiBit" 
+   <programGroup defaultName="MultiLogic" location="applications"/> 
+   <shortcut name="MultiLogic ${project.version}" 
+             target="$INSTALL_PATH/multilogic.exe" 
+             description="MultiLogic" 
              workingDirectory="$INSTALL_PATH"
-             iconFile="$INSTALL_PATH/multibit.ico" 
+             iconFile="$INSTALL_PATH/multilogic.ico" 
              initialState="normal" 
              programGroup="yes"
              desktop="yes" 
              applications="no" 
              startMenu="no" 
              startup="no">
-    </shortcut>    <shortcut name="Uninstall MultiBit ${project.version}" 
+    </shortcut>
+    <shortcut name="Uninstall MultiLogic ${project.version}" 
              target="$INSTALL_PATH/uninstaller/uninstaller.jar" 
-             description="Uninstall MultiBit" 
+             description="Uninstall MultiLogic" 
              initialState="normal" 
              programGroup="yes"
              desktop="no" 
              applications="no" 
              startMenu="no" 
              startup="no">
-    </shortcut></shortcuts>
+    </shortcut>
+</shortcuts>

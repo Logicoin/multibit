@@ -16,23 +16,23 @@
 package org.multibit.file;
 
 
-import com.google.bitcoin.core.ECKey;
-import com.google.bitcoin.core.NetworkParameters;
-import com.google.bitcoin.core.Utils;
-import com.google.bitcoin.core.Wallet;
-import com.google.bitcoin.crypto.KeyCrypter;
-import com.google.bitcoin.crypto.KeyCrypterScrypt;
+import com.google.logicoin.core.ECKey;
+import com.google.logicoin.core.NetworkParameters;
+import com.google.logicoin.core.Utils;
+import com.google.logicoin.core.Wallet;
+import com.google.logicoin.crypto.KeyCrypter;
+import com.google.logicoin.crypto.KeyCrypterScrypt;
 import com.google.protobuf.ByteString;
-import org.bitcoinj.wallet.Protos;
-import org.bitcoinj.wallet.Protos.ScryptParameters;
-import org.bitcoinj.wallet.Protos.Wallet.EncryptionType;
+import org.logicoinj.wallet.Protos;
+import org.logicoinj.wallet.Protos.ScryptParameters;
+import org.logicoinj.wallet.Protos.Wallet.EncryptionType;
 import org.junit.Before;
 import org.junit.Test;
 import org.multibit.Constants;
 import org.multibit.CreateControllers;
-import org.multibit.controller.bitcoin.BitcoinController;
-import org.multibit.model.bitcoin.WalletData;
-import org.multibit.model.bitcoin.WalletInfoData;
+import org.multibit.controller.logicoin.BitcoinController;
+import org.multibit.model.logicoin.WalletData;
+import org.multibit.model.logicoin.WalletInfoData;
 import org.multibit.store.MultiBitWalletVersion;
 import org.multibit.store.WalletVersionException;
 

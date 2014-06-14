@@ -28,7 +28,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.utils.ImageLoader;
 import org.multibit.viewsystem.swing.ColorAndFontConstants;
 import org.multibit.viewsystem.swing.MultiBitFrame;

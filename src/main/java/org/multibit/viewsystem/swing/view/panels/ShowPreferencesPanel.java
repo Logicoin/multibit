@@ -16,13 +16,13 @@
 package org.multibit.viewsystem.swing.view.panels;
 
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.controller.exchange.ExchangeController;
 import org.multibit.exchange.CurrencyConverter;
 import org.multibit.exchange.TickerTimerTask;
 import org.multibit.message.Message;
 import org.multibit.message.MessageManager;
-import org.multibit.model.bitcoin.BitcoinModel;
+import org.multibit.model.logicoin.BitcoinModel;
 import org.multibit.model.core.CoreModel;
 import org.multibit.model.exchange.ExchangeData;
 import org.multibit.model.exchange.ExchangeModel;
@@ -99,6 +99,8 @@ public class ShowPreferencesPanel extends JPanel implements Viewable, Preference
     private MultiBitLabel fontSizeTextLabel;
 
     private MultiBitLabel exchangeInformationLabel;
+
+    private JCheckBox minimizeToTrayCheckBox;
 
     private String originalFontName;
     private String originalFontStyle;
@@ -665,6 +667,24 @@ public class ShowPreferencesPanel extends JPanel implements Viewable, Preference
         constraints.anchor = GridBagConstraints.LINE_START;
         appearancePanel.add(lookAndFeelComboBox, constraints);
 
+        minimizeToTrayCheckBox = new JCheckBox(controller.getLocaliser().getString("showPreferencesPanel.minimizeToTray"));
+        minimizeToTrayCheckBox.setOpaque(false);
+        minimizeToTrayCheckBox.setFont(FontSizer.INSTANCE.getAdjustedDefaultFont());
+        minimizeToTrayCheckBox.setSelected(Boolean.TRUE.toString().equals(controller.getModel().getUserPreference(CoreModel.MINIMIZE_TO_TRAY)));
+
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.gridx = 1;
+        constraints.gridy = 10;
+        constraints.weightx = 0.8;
+        constraints.weighty = 0.6;
+        constraints.gridwidth = 3;
+        constraints.ipady = 10;
+        constraints.anchor = GridBagConstraints.LINE_START;
+        if (SystemTray.isSupported())
+        {
+            appearancePanel.add(minimizeToTrayCheckBox, constraints);
+        }
+
         JPanel fill1 = new JPanel();
         fill1.setOpaque(false);
         constraints.fill = GridBagConstraints.BOTH;
@@ -684,26 +704,10 @@ public class ShowPreferencesPanel extends JPanel implements Viewable, Preference
         originalShowTicker = !Boolean.FALSE.toString().equals(controller.getModel().getUserPreference(ExchangeModel.TICKER_SHOW));
         originalExchange1 = controller.getModel().getUserPreference(ExchangeModel.TICKER_FIRST_ROW_EXCHANGE);
         originalCurrency1 = controller.getModel().getUserPreference(ExchangeModel.TICKER_FIRST_ROW_CURRENCY);
-        // Map MtGox to Bitstamp + USD
-        if (ExchangeData.MT_GOX_EXCHANGE_NAME.equalsIgnoreCase(originalExchange1)) {
-          originalExchange1 = ExchangeData.BITSTAMP_EXCHANGE_NAME;
-          controller.getModel().setUserPreference(ExchangeModel.TICKER_FIRST_ROW_EXCHANGE, ExchangeData.BITSTAMP_EXCHANGE_NAME);
-
-          originalCurrency1 = "USD";
-          controller.getModel().setUserPreference(ExchangeModel.TICKER_FIRST_ROW_CURRENCY, "USD");
-        }
         originalShowSecondRow = Boolean.TRUE.toString().equals(
                 controller.getModel().getUserPreference(ExchangeModel.TICKER_SHOW_SECOND_ROW));
         originalExchange2 = controller.getModel().getUserPreference(ExchangeModel.TICKER_SECOND_ROW_EXCHANGE);
         originalCurrency2 = controller.getModel().getUserPreference(ExchangeModel.TICKER_SECOND_ROW_CURRENCY);
-        // Map MtGox to Bitstamp
-        if (ExchangeData.MT_GOX_EXCHANGE_NAME.equalsIgnoreCase(originalExchange2)) {
-          originalExchange2 = ExchangeData.BITSTAMP_EXCHANGE_NAME;
-          controller.getModel().setUserPreference(ExchangeModel.TICKER_SECOND_ROW_EXCHANGE, ExchangeData.BITSTAMP_EXCHANGE_NAME);
-
-          originalCurrency2 = "USD";
-          controller.getModel().setUserPreference(ExchangeModel.TICKER_SECOND_ROW_CURRENCY, "USD");
-        }
 
         MultiBitTitledPanel tickerPanel = new MultiBitTitledPanel(controller.getLocaliser().getString(
                 "showPreferencesPanel.ticker.title2"), ComponentOrientation.getOrientation(controller.getLocaliser().getLocale()));
@@ -1756,6 +1760,11 @@ public class ShowPreferencesPanel extends JPanel implements Viewable, Preference
     @Override
     public String getPreviousOpenExchangeRatesApiCode() {
         return originalOERApiCode;
+    }
+
+    @Override
+    public boolean getNewMinimizeToTray() {
+        return minimizeToTrayCheckBox.isSelected();
     }
 
     @Override

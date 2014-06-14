@@ -15,15 +15,15 @@
  */
 package org.multibit.viewsystem.swing.action;
 
-import com.google.bitcoin.core.Address;
-import com.google.bitcoin.core.AddressFormatException;
-import com.google.bitcoin.core.Transaction;
-import com.google.bitcoin.core.Wallet.BalanceType;
+import com.google.logicoin.core.Address;
+import com.google.logicoin.core.AddressFormatException;
+import com.google.logicoin.core.Transaction;
+import com.google.logicoin.core.Wallet.BalanceType;
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.exchange.CurrencyConverter;
 import org.multibit.exchange.CurrencyConverterResult;
-import org.multibit.model.bitcoin.BitcoinModel;
+import org.multibit.model.logicoin.BitcoinModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

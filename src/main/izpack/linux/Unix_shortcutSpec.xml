@@ -2,27 +2,27 @@
 
 <shortcuts>
 
-  <programGroup defaultName="MultiBit"
+  <programGroup defaultName="MultiLogic"
   location="applications"/>
 
    <shortcut
-     name="MultiBit ${project.version}"
+     name="MultiLogic ${project.version}"
      programGroup="yes"
      desktop="yes"
      applications="no"
      startMenu="no"
      startup="no"
      target="/usr/bin/java"
-     commandLine="-jar $INSTALL_PATH/multibit-exe.jar"
+     commandLine="-jar $INSTALL_PATH/multilogic-exe.jar"
      initialState="normal"
-     iconFile="$INSTALL_PATH/multibit48.png"
+     iconFile="$INSTALL_PATH/multilogic48.png"
      workingDirectory="$INSTALL_PATH"
      type="Application"
      encoding="UTF-8"
-     description="MultiBit ${project.version}">
+     description="MultiLogic ${project.version}">
    </shortcut>
    <shortcut
-     name="Uninstall MultiBit ${project.version}"
+     name="Uninstall MultiLogic ${project.version}"
      programGroup="yes"
      desktop="yes"
      applications="no"
@@ -34,7 +34,7 @@
      workingDirectory="$INSTALL_PATH"
      type="Application"
      encoding="UTF-8"
-     description="Uninstall MultiBit ${project.version}">
+     description="Uninstall MultiLogic ${project.version}">
    </shortcut>
 </shortcuts>
 

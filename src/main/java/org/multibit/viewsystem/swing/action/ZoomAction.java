@@ -36,7 +36,7 @@ import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.qrcode.QRCodeGenerator;
 import org.multibit.viewsystem.swing.MultiBitFrame;
 import org.multibit.viewsystem.swing.view.panels.AbstractTradePanel;

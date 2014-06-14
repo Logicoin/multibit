@@ -15,22 +15,21 @@
  */
 package org.multibit.viewsystem.swing.action;
 
-import com.google.bitcoin.core.StoredBlock;
-import com.google.bitcoin.core.Transaction;
-import com.google.bitcoin.core.TransactionConfidence;
-import com.google.bitcoin.core.Wallet;
-import com.google.bitcoin.crypto.KeyCrypterException;
+import com.google.logicoin.core.StoredBlock;
+import com.google.logicoin.core.Transaction;
+import com.google.logicoin.core.TransactionConfidence;
+import com.google.logicoin.core.Wallet;
+import com.google.logicoin.crypto.KeyCrypterException;
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.file.BackupManager;
 import org.multibit.file.FileHandler;
 import org.multibit.file.WalletLoadException;
 import org.multibit.file.WalletSaveException;
 import org.multibit.message.Message;
 import org.multibit.message.MessageManager;
-import org.multibit.model.bitcoin.BitcoinModel;
-import org.multibit.model.bitcoin.WalletData;
-import org.multibit.model.bitcoin.WalletInfoData;
+import org.multibit.model.logicoin.BitcoinModel;
+import org.multibit.model.logicoin.WalletData;
 import org.multibit.network.MultiBitCheckpointManager;
 import org.multibit.network.ReplayManager;
 import org.multibit.network.ReplayTask;
@@ -113,6 +112,7 @@ public class OpenWalletAction extends AbstractAction {
                 }
                 fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
                 fileChooser.setFileFilter(new WalletFileFilter(controller));
+                fileChooser.setAcceptAllFileFilterUsed(false);
             }
 
             fileChooser.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -131,20 +131,23 @@ public class OpenWalletAction extends AbstractAction {
                             List<WalletData> perWalletDataModels = this.bitcoinController.getModel().getPerWalletModelDataList();
                             if (perWalletDataModels != null) {
                                 Iterator<WalletData> iterator = perWalletDataModels.iterator();
-                                while(iterator.hasNext()) {
-                                    WalletData perWalletModelData = iterator.next();
-                                    if (perWalletModelData != null && perWalletModelData.getWalletFilename() != null) {
-                                        if (perWalletModelData.getWalletFilename().equals(selectedWalletFilename)) {
-                                            walletIsAlreadyOpen = true;
-                                            this.bitcoinController.getModel().setActiveWalletByFilename(selectedWalletFilename);
-                                            controller.fireDataChangedUpdateNow();
-                                            break;
-                                        } else {
-                                            // Check if the file encrypted version of the wallet is already open - if so use it.
-                                            if ((perWalletModelData.getWalletFilename() + "." + BackupManager.FILE_ENCRYPTED_WALLET_SUFFIX).equals(selectedWalletFilename)) {
+                                if (iterator != null) {
+                                    while(iterator.hasNext()) {
+                                        WalletData perWalletModelData = iterator.next();
+                                        if (perWalletModelData != null && perWalletModelData.getWalletFilename() != null) {
+                                            if (perWalletModelData.getWalletFilename().equals(selectedWalletFilename)) {
                                                 walletIsAlreadyOpen = true;
-                                                this.bitcoinController.getModel().setActiveWalletByFilename(perWalletModelData.getWalletFilename());                                                    controller.fireDataChangedUpdateNow();
+                                                this.bitcoinController.getModel().setActiveWalletByFilename(selectedWalletFilename);
+                                                controller.fireDataChangedUpdateNow();
                                                 break;
+                                            } else {
+                                                // Check if the file encrypted version of the wallet is already open - if so use it.
+                                                if ((perWalletModelData.getWalletFilename() + "." + BackupManager.FILE_ENCRYPTED_WALLET_SUFFIX).equals(selectedWalletFilename)) {
+                                                    walletIsAlreadyOpen = true;
+                                                    this.bitcoinController.getModel().setActiveWalletByFilename(perWalletModelData.getWalletFilename());
+                                                    controller.fireDataChangedUpdateNow();
+                                                    break;
+                                                }    
                                             }
                                         }
                                     }
@@ -294,15 +297,6 @@ public class OpenWalletAction extends AbstractAction {
                     log.debug("Writing user preferences. . .");
                     FileHandler.writeUserPreferences(bitcoinController);
                     log.debug("User preferences with new wallet written successfully");
-
-                    // Clean out the "1Enjoy 1Sochi" spam - always do this (even if it has been done before)
-                    // so that user can manually clean a wallet by closing it and then reopening it)
-                    WalletInfoData walletInfo = perWalletModelData.getWalletInfo();
-                    log.debug("Cleaning wallet '" + selectedWalletFilenameFinal + "' of spam ...");
-                    perWalletModelData.getWallet().cleanup();
-                    walletInfo.put(BitcoinModel.WALLET_CLEANED_OF_SPAM, Boolean.TRUE.toString());
-                    bitcoinController.getFileHandler().savePerWalletModelData(perWalletModelData, false);
-                    log.debug("done.");
 
                     // Backup the wallet and wallet info.
                     BackupManager.INSTANCE.backupPerWalletModelData(bitcoinController.getFileHandler(), perWalletModelData);

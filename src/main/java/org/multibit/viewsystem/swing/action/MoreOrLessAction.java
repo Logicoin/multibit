@@ -16,7 +16,7 @@
 package org.multibit.viewsystem.swing.action;
 
 import org.multibit.controller.Controller;
-import org.multibit.model.bitcoin.BitcoinModel;
+import org.multibit.model.logicoin.BitcoinModel;
 import org.multibit.viewsystem.swing.view.panels.AbstractTradePanel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 
 /**
  * This {@link Action} represents the action to toggle the more or less button
- * on the send/ receive bitcoin panels.
+ * on the send/ receive logicoin panels.
  */
 public class MoreOrLessAction extends AbstractAction {
 

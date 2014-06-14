@@ -24,12 +24,12 @@
 package org.multibit;
 
 import java.util.Locale;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.controller.core.CoreController;
 import org.multibit.controller.exchange.ExchangeController;
 import org.multibit.exchange.CurrencyConverter;
 import org.multibit.model.core.CoreModel;
-import org.multibit.model.bitcoin.BitcoinModel;
+import org.multibit.model.logicoin.BitcoinModel;
 import org.multibit.model.exchange.ExchangeModel;
 
 /**

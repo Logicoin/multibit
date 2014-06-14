@@ -16,14 +16,14 @@
 
 package org.multibit.network;
 
-import com.google.bitcoin.core.CheckpointManager;
-import com.google.bitcoin.core.PeerGroup;
-import com.google.bitcoin.core.StoredBlock;
-import com.google.bitcoin.store.BlockStoreException;
-import org.multibit.controller.bitcoin.BitcoinController;
+import com.google.logicoin.core.CheckpointManager;
+import com.google.logicoin.core.PeerGroup;
+import com.google.logicoin.core.StoredBlock;
+import com.google.logicoin.store.BlockStoreException;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.message.Message;
 import org.multibit.message.MessageManager;
-import org.multibit.model.bitcoin.WalletData;
+import org.multibit.model.logicoin.WalletData;
 import org.multibit.viewsystem.swing.view.panels.SendBitcoinPanel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -15,10 +15,10 @@
  */
 package org.multibit.viewsystem.swing.action;
 
-import com.google.bitcoin.core.*;
-import com.google.bitcoin.crypto.KeyCrypterException;
-import org.multibit.controller.bitcoin.BitcoinController;
-import org.multibit.model.bitcoin.WalletBusyListener;
+import com.google.logicoin.core.*;
+import com.google.logicoin.crypto.KeyCrypterException;
+import org.multibit.controller.logicoin.BitcoinController;
+import org.multibit.model.logicoin.WalletBusyListener;
 import org.multibit.utils.WhitespaceTrimmer;
 import org.multibit.viewsystem.swing.MultiBitFrame;
 import org.multibit.viewsystem.swing.view.panels.SignMessagePanel;

@@ -19,7 +19,7 @@ import junit.framework.TestCase;
 import org.junit.Test;
 import org.multibit.CreateControllers;
 import org.multibit.CreateControllers.Controllers;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.viewsystem.swing.action.ActionTestUtils;
 
 public class BitcoinControllerTest extends TestCase {     

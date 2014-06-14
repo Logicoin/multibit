@@ -15,20 +15,50 @@
  */
 package org.multibit.file;
 
-import com.google.bitcoin.core.*;
-import com.google.bitcoin.crypto.KeyCrypter;
-import com.google.bitcoin.crypto.KeyCrypterException;
-import org.bitcoinj.wallet.Protos.Wallet.EncryptionType;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Locale;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.TimeZone;
+
+import com.google.logicoin.crypto.KeyCrypter;
+import com.google.logicoin.crypto.KeyCrypterException;
+
 import org.multibit.crypto.KeyCrypterOpenSSL;
 import org.multibit.utils.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.spongycastle.crypto.params.KeyParameter;
 
-import java.io.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import com.google.logicoin.core.AddressFormatException;
+import com.google.logicoin.core.Block;
+import com.google.logicoin.core.BlockChain;
+import com.google.logicoin.core.DumpedPrivateKey;
+import com.google.logicoin.core.ECKey;
+import com.google.logicoin.core.NetworkParameters;
+import com.google.logicoin.core.ScriptException;
+import com.google.logicoin.core.StoredBlock;
+import com.google.logicoin.core.Transaction;
+import com.google.logicoin.core.TransactionInput;
+import com.google.logicoin.core.TransactionOutput;
+import com.google.logicoin.core.Utils;
+import com.google.logicoin.core.Wallet;
+
+import org.logicoinj.wallet.Protos.Wallet.EncryptionType;
 
 /**
  * Class for handling reading and writing of private keys to a file.
@@ -115,12 +145,14 @@ public class PrivateKeysHandler {
      *            The export file to verify
      * @param wallet
      *            The wallet to verify the keys against
+     * @param performEncryptionOfExportFile
+     *            Is Encryption required
      * @param exportPassword
      *            the password to use is encryption is required
      * @return Verification The result of verification
-     * @throws KeyCrypterException
+     * @throws EncrypterDecrypterException 
      */
-    public Verification verifyExportFile(File exportFile, Wallet wallet, BlockChain blockChain,
+    public Verification verifyExportFile(File exportFile, Wallet wallet, BlockChain blockChain, boolean performEncryptionOfExportFile,
             CharSequence exportPassword, CharSequence walletPassword) throws KeyCrypterException {
         boolean thereWereFailures = false;
 
@@ -216,7 +248,7 @@ public class PrivateKeysHandler {
 
     private void outputHeaderComment(StringBuffer out) {
         out.append("# KEEP YOUR PRIVATE KEYS SAFE !").append("\n");
-        out.append("# Anyone who can read this file can spend your bitcoin.").append("\n");
+        out.append("# Anyone who can read this file can spend your logicoin.").append("\n");
         out.append("#").append("\n");
         out.append("# Format:").append("\n");
         out.append("#   <Base58 encoded private key>[<whitespace>[<key createdAt>]]").append("\n");
@@ -260,11 +292,13 @@ public class PrivateKeysHandler {
                             if (transactionUsesKey(tx, ecKey)) {
                                 Date updateTime = tx.getUpdateTime();
                                 if (updateTime != null) {
-                                    if (overallLastUsageDate == null) {
-                                        overallLastUsageDate = updateTime;
-                                    } else {
-                                        overallLastUsageDate = overallLastUsageDate.after(updateTime) ? overallLastUsageDate
+                                    if (updateTime != null) {
+                                        if (overallLastUsageDate == null) {
+                                            overallLastUsageDate = updateTime;
+                                        } else {
+                                            overallLastUsageDate = overallLastUsageDate.after(updateTime) ? overallLastUsageDate
                                                     : updateTime;
+                                        }
                                     }
                                     if (earliestUsageDate == null) {
                                         earliestUsageDate = updateTime;
@@ -460,9 +494,8 @@ public class PrivateKeysHandler {
 
     public static String readFile(File file) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(file));
-        String line;
+        String line = null;
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("");
         String ls = System.getProperty("line.separator");
         while ((line = reader.readLine()) != null) {
             stringBuilder.append(line);

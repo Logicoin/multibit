@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.multibit.model.bitcoin;
+package org.multibit.model.logicoin;
 
-import com.google.bitcoin.core.*;
-import com.google.bitcoin.core.Wallet.BalanceType;
-import com.google.bitcoin.store.BlockStoreException;
+import com.google.logicoin.core.*;
+import com.google.logicoin.core.Wallet.BalanceType;
+import com.google.logicoin.store.BlockStoreException;
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.model.AbstractModel;
 import org.multibit.model.ModelEnum;
 import org.multibit.model.core.CoreModel;
@@ -66,9 +66,7 @@ public class BitcoinModel extends AbstractModel<CoreModel> {
     public static final String WALLET_ORDER_TOTAL = "walletOrderTotal";
     public static final String WALLET_ORDER_PREFIX = "walletOrder.";
 
-    public static final String WALLET_CLEANED_OF_SPAM = "walletCleanedOfSpam";
-
-    // Send bitcoin and send bitcoin confirm.
+    // Send logicoin and send logicoin confirm.
     public static final String SEND_ADDRESS = "sendAddress";
     public static final String SEND_LABEL = "sendLabel";
     public static final String SEND_AMOUNT = "sendAmount";
@@ -80,7 +78,7 @@ public class BitcoinModel extends AbstractModel<CoreModel> {
     
     public static final int MINIMUM_NUMBER_OF_CONNECTED_PEERS_BEFORE_SEND_IS_ENABLED = 2;
 
-    // Open bitcoin URI.
+    // Open logicoin URI.
     public static final String OPEN_URI_SHOW_DIALOG = "openUriShowDialog";
     public static final String OPEN_URI_USE_URI = "openUriUseUri";
     public static final String OPEN_URI_ADDRESS = "openUriAddress";
@@ -89,16 +87,16 @@ public class BitcoinModel extends AbstractModel<CoreModel> {
     public static final String BRING_TO_FRONT = "bringToFront";
 
     // Default fee and feePerKB
-    public static final BigInteger SEND_FEE_DEFAULT = new BigInteger("50000");
-    public static final BigInteger SEND_FEE_PER_KB_DEFAULT = new BigInteger("10000");
+    public static final BigInteger SEND_FEE_DEFAULT = new BigInteger("100000000");
+    public static final BigInteger SEND_FEE_PER_KB_DEFAULT = new BigInteger("100000000");
     
     // Minimum fee.
-    public static final BigInteger SEND_MINIMUM_FEE = new BigInteger("10000");
+    public static final BigInteger SEND_MINIMUM_FEE = new BigInteger("100000000");
 
     // Maximum fee.
-    public static final BigInteger SEND_MAXIMUM_FEE = new BigInteger("100000000"); // 1 BTC.
+    public static final BigInteger SEND_MAXIMUM_FEE = new BigInteger("100000000000"); // 1000 LGC. Hope it won't ever go above du to bogus transactions.
 
-    // Receive bitcoin.
+    // Receive logicoin.
     public static final String IS_RECEIVE_BITCOIN = "isReceiveBitcoin";
     public static final String RECEIVE_ADDRESS = "receiveAddress";
     public static final String RECEIVE_LABEL = "receiveLabel";
@@ -693,18 +691,18 @@ public class BitcoinModel extends AbstractModel<CoreModel> {
     
     public NetworkParameters getNetworkParameters() {
         // If test or production is not specified, default to production.
-        String testOrProduction = super.getUserPreference(BitcoinModel.TEST_OR_PRODUCTION_NETWORK);
-        if (testOrProduction == null) {
-            testOrProduction = BitcoinModel.PRODUCTION_NETWORK_VALUE;
-            super.setUserPreference(BitcoinModel.TEST_OR_PRODUCTION_NETWORK, testOrProduction);
-        }
-        if (BitcoinModel.TEST_NETWORK_VALUE.equalsIgnoreCase(testOrProduction)) {
-            return NetworkParameters.testNet2();
-        } else if (BitcoinModel.TESTNET3_VALUE.equalsIgnoreCase(testOrProduction)) {
-            return NetworkParameters.testNet();
-        } else {
+//        String testOrProduction = super.getUserPreference(BitcoinModel.TEST_OR_PRODUCTION_NETWORK);
+//        if (testOrProduction == null) {
+//            testOrProduction = BitcoinModel.PRODUCTION_NETWORK_VALUE;
+//            super.setUserPreference(BitcoinModel.TEST_OR_PRODUCTION_NETWORK, testOrProduction);
+//        }
+//        if (BitcoinModel.TEST_NETWORK_VALUE.equalsIgnoreCase(testOrProduction)) {
+//            return NetworkParameters.testNet2();
+//        } else if (BitcoinModel.TESTNET3_VALUE.equalsIgnoreCase(testOrProduction)) {
+//            return NetworkParameters.testNet();
+//        } else {
             return NetworkParameters.prodNet();
-        }
+//        }
     }
 
     public boolean thereIsNoActiveWallet() {

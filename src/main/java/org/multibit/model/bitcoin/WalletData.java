@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.multibit.model.bitcoin;
+package org.multibit.model.logicoin;
 
 import java.util.List;
 import java.util.UUID;
 
 import org.multibit.viewsystem.swing.view.walletlist.SingleWalletPanelDownloadListener;
 
-import com.google.bitcoin.core.Wallet;
+import com.google.logicoin.core.Wallet;
 
 /**
  * This wrapper class wraps all the data pertaining to a single wallet.

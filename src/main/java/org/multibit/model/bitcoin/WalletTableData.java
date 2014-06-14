@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.multibit.model.bitcoin;
+package org.multibit.model.logicoin;
 
 import java.math.BigInteger;
 import java.util.Date;
 
-import com.google.bitcoin.core.Transaction;
+import com.google.logicoin.core.Transaction;
 
 /**
  * Class used to store the data in the Transactions table in a quick to access data form.

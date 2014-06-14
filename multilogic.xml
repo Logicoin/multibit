@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="multilogic" default="all">
+  
+  
+  <property file="multilogic.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.pyc/**"/>
+    <exclude name="**/.pyo/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/*.lib/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/.bundle/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.ear"/>
+    <include name="*.apk"/>
+    <include name="*.zip"/>
+    <include name="*.swc"/>
+    <include name="*.ane"/>
+    <include name="*.egg"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.android_api_19_platform" value="${jdk.home.android_api_19_platform}/../../java/bin"/>
+  <path id="jdk.classpath.android_api_19_platform">
+    <fileset dir="${jdk.home.android_api_19_platform}">
+      <include name="platforms/android-19/android.jar"/>
+      <include name="platforms/android-19/data/res"/>
+      <include name="tools/support/annotations.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.android_api_19_platform}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.android_api_19_platform}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.android_api_19_platform"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.maven:_ch.qos.logback:logback-classic:1.0.9.classpath">
+    <pathelement location="${path.variable.maven_repository}/ch/qos/logback/logback-classic/1.0.9/logback-classic-1.0.9.jar"/>
+  </path>
+  
+  <path id="library.maven:_ch.qos.logback:logback-core:1.0.9.classpath">
+    <pathelement location="${path.variable.maven_repository}/ch/qos/logback/logback-core/1.0.9/logback-core-1.0.9.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.3.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/fasterxml/jackson/core/jackson-annotations/2.3.2/jackson-annotations-2.3.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.fasterxml.jackson.core:jackson-core:2.3.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/fasterxml/jackson/core/jackson-core/2.3.2/jackson-core-2.3.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.3.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/fasterxml/jackson/core/jackson-databind/2.3.2/jackson-databind-2.3.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.github.mmazi:rescu:1.6.1-snapshot.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/github/mmazi/rescu/1.6.1-SNAPSHOT/rescu-1.6.1-20140529.180259-10.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.google.code.findbugs:jsr305:2.0.3.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/google/code/findbugs/jsr305/2.0.3/jsr305-2.0.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.google.code.gson:gson:2.2.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/google/code/gson/gson/2.2.2/gson-2.2.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.google.guava:guava-annotations:r03.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/google/guava/guava-annotations/r03/guava-annotations-r03.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.google.guava:guava-base:r03.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/google/guava/guava-base/r03/guava-base-r03.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.google.zxing:core:1.6.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/google/zxing/core/1.6/core-1.6.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.google.zxing:javase:1.6.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/google/zxing/javase/1.6/javase-1.6.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.google:logicoinj:0.10.3-mb-alice.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/google/logicoinj/0.10.3-MB-ALICE/logicoinj-0.10.3-MB-ALICE.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.googlecode.jcsv:jcsv:1.4.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/googlecode/jcsv/jcsv/1.4.0/jcsv-1.4.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.lambdaworks:scrypt:1.3.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/lambdaworks/scrypt/1.3.2/scrypt-1.3.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.madgag:sc-light-jdk15on:1.47.0.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/madgag/sc-light-jdk15on/1.47.0.2/sc-light-jdk15on-1.47.0.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.pusher:pusher-java-client:0.3.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/pusher/pusher-java-client/0.3.1/pusher-java-client-0.3.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.toedter:jcalendar:1.3.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/toedter/jcalendar/1.3.2/jcalendar-1.3.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.xeiam.xchange:xchange-bitcoinaverage:2.1.0-snapshot.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/xeiam/xchange/xchange-bitcoinaverage/2.1.0-SNAPSHOT/xchange-bitcoinaverage-2.1.0-SNAPSHOT.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.xeiam.xchange:xchange-bitstamp:2.1.0-snapshot.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/xeiam/xchange/xchange-bitstamp/2.1.0-SNAPSHOT/xchange-bitstamp-2.1.0-SNAPSHOT.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.xeiam.xchange:xchange-btcchina:2.1.0-snapshot.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/xeiam/xchange/xchange-btcchina/2.1.0-SNAPSHOT/xchange-btcchina-2.1.0-SNAPSHOT.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.xeiam.xchange:xchange-btce:2.1.0-snapshot.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/xeiam/xchange/xchange-btce/2.1.0-SNAPSHOT/xchange-btce-2.1.0-SNAPSHOT.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.xeiam.xchange:xchange-campbx:2.1.0-snapshot.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/xeiam/xchange/xchange-campbx/2.1.0-SNAPSHOT/xchange-campbx-2.1.0-SNAPSHOT.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.xeiam.xchange:xchange-cavirtex:2.1.0-snapshot.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/xeiam/xchange/xchange-cavirtex/2.1.0-SNAPSHOT/xchange-cavirtex-2.1.0-SNAPSHOT.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.xeiam.xchange:xchange-core:2.1.0-snapshot.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/xeiam/xchange/xchange-core/2.1.0-SNAPSHOT/xchange-core-2.1.0-SNAPSHOT.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.xeiam.xchange:xchange-kraken:2.1.0-snapshot.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/xeiam/xchange/xchange-kraken/2.1.0-SNAPSHOT/xchange-kraken-2.1.0-SNAPSHOT.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.xeiam.xchange:xchange-openexchangerates:2.1.0-snapshot.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/xeiam/xchange/xchange-openexchangerates/2.1.0-SNAPSHOT/xchange-openexchangerates-2.1.0-SNAPSHOT.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.xeiam.xchart:xchart:2.2.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/xeiam/xchart/xchart/2.2.1/xchart-2.2.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-codec:commons-codec:1.4.classpath">
+    <pathelement location="${path.variable.maven_repository}/commons-codec/commons-codec/1.4/commons-codec-1.4.jar"/>
+  </path>
+  
+  <path id="library.maven:_javax.ws.rs:jsr311-api:1.1.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/javax/ws/rs/jsr311-api/1.1.1/jsr311-api-1.1.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_joda-time:joda-time:2.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/joda-time/joda-time/2.1/joda-time-2.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_junit:junit:4.8.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/junit/junit/4.8.2/junit-4.8.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.codehaus.jackson:jackson-core-asl:1.9.5.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/codehaus/jackson/jackson-core-asl/1.9.5/jackson-core-asl-1.9.5.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.codehaus.jackson:jackson-mapper-asl:1.9.5.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/codehaus/jackson/jackson-mapper-asl/1.9.5/jackson-mapper-asl-1.9.5.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.java-websocket:java-websocket:1.3.0.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/java-websocket/Java-WebSocket/1.3.0/Java-WebSocket-1.3.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.joda:joda-money:0.8.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/joda/joda-money/0.8/joda-money-0.8.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.simplericity.macify:macify:1.6.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/simplericity/macify/macify/1.6/macify-1.6.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.slf4j:slf4j-api:1.6.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/org/slf4j/slf4j-api/1.6.2/slf4j-api-1.6.2.jar"/>
+  </path>
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm4-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  <import file="${basedir}/module_multilogic.xml"/>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.multilogic" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.multilogic" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>

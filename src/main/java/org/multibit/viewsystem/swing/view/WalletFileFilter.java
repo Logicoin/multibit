@@ -19,7 +19,7 @@ import java.io.File;
 
 import org.multibit.controller.Controller;
 import org.multibit.file.BackupManager;
-import org.multibit.model.bitcoin.BitcoinModel;
+import org.multibit.model.logicoin.BitcoinModel;
 
 public class WalletFileFilter extends javax.swing.filechooser.FileFilter {
 

@@ -23,15 +23,15 @@ import org.junit.Test;
 import org.multibit.Constants;
 import org.multibit.CreateControllers;
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.file.PrivateKeysHandlerTest;
 import org.multibit.message.Message;
 import org.multibit.message.MessageManager;
 import org.multibit.viewsystem.swing.view.panels.ImportPrivateKeysPanel;
 import org.multibit.viewsystem.swing.view.components.FontSizer;
 
-import com.google.bitcoin.core.ECKey;
-import org.bitcoinj.wallet.Protos.Wallet.EncryptionType;
+import com.google.logicoin.core.ECKey;
+import org.logicoinj.wallet.Protos.Wallet.EncryptionType;
 
 public class ImportPrivateKeysSubmitActionTest extends TestCase {   
     
@@ -317,7 +317,7 @@ public class ImportPrivateKeysSubmitActionTest extends TestCase {
         importPrivateKeysSubmitAction.actionPerformed(null);
         Object[] messages = MessageManager.INSTANCE.getMessages().toArray();
         assertTrue("There were no messages but there should have been", messages != null && messages.length > 0);
-        assertEquals("Wrong message after receive bitcoin confirm with no active wallet", ResetTransactionsSubmitActionTest.EXPECTED_NO_WALLET_IS_SELECTED, ((Message)messages[messages.length - 1]).getText());
+        assertEquals("Wrong message after receive logicoin confirm with no active wallet", ResetTransactionsSubmitActionTest.EXPECTED_NO_WALLET_IS_SELECTED, ((Message)messages[messages.length - 1]).getText());
     }
     
     private void checkEveryExpectedKeyIsPresent(BitcoinController controller) {

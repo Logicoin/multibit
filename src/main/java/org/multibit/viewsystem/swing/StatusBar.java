@@ -33,9 +33,9 @@ package org.multibit.viewsystem.swing;
  * limitations under the License.
  */
 
-import com.google.bitcoin.core.Block;
+import com.google.logicoin.core.Block;
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.message.Message;
 import org.multibit.message.MessageListener;
 import org.multibit.model.core.StatusEnum;

@@ -24,16 +24,16 @@ import java.awt.FontMetrics;
 import javax.swing.ImageIcon;
 
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.utils.ImageLoader;
 import org.multibit.viewsystem.swing.MultiBitFrame;
 import org.multibit.viewsystem.swing.view.components.FontSizer;
 import org.multibit.viewsystem.swing.view.components.MultiBitDialog;
 
-import com.google.bitcoin.core.Wallet.SendRequest;
+import com.google.logicoin.core.Wallet.SendRequest;
 
 /**
- * The send bitcoin confirm dialog.
+ * The send logicoin confirm dialog.
  */
 public class SendBitcoinConfirmDialog extends MultiBitDialog {
 
@@ -72,7 +72,7 @@ public class SendBitcoinConfirmDialog extends MultiBitDialog {
     }
 
     /**
-     * Initialise bitcoin confirm dialog.
+     * Initialise logicoin confirm dialog.
      */
     public void initUI() {
         FontMetrics fontMetrics = getFontMetrics(FontSizer.INSTANCE.getAdjustedDefaultFont());

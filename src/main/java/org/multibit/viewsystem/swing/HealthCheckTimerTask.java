@@ -16,11 +16,11 @@
 package org.multibit.viewsystem.swing;
 
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.file.WalletSaveException;
 import org.multibit.message.Message;
 import org.multibit.message.MessageManager;
-import org.multibit.model.bitcoin.WalletData;
+import org.multibit.model.logicoin.WalletData;
 import org.multibit.store.WalletVersionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

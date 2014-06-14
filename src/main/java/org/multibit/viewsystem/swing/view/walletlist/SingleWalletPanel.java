@@ -15,15 +15,15 @@
  */
 package org.multibit.viewsystem.swing.view.walletlist;
 
-import com.google.bitcoin.core.Wallet.BalanceType;
-import org.bitcoinj.wallet.Protos.Wallet.EncryptionType;
+import com.google.logicoin.core.Wallet.BalanceType;
+import org.logicoinj.wallet.Protos.Wallet.EncryptionType;
 import org.joda.money.Money;
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.exchange.CurrencyConverter;
 import org.multibit.message.Message;
-import org.multibit.model.bitcoin.WalletBusyListener;
-import org.multibit.model.bitcoin.WalletData;
+import org.multibit.model.logicoin.WalletBusyListener;
+import org.multibit.model.logicoin.WalletData;
 import org.multibit.network.MultiBitDownloadListener;
 import org.multibit.network.ReplayManager;
 import org.multibit.network.ReplayTask;
@@ -41,7 +41,9 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
+import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 
 
 public class SingleWalletPanel extends JPanel implements ActionListener, FocusListener, WalletBusyListener {
@@ -588,7 +590,7 @@ public class SingleWalletPanel extends JPanel implements ActionListener, FocusLi
     String balanceTextToShowFiat = "";
     if (CurrencyConverter.INSTANCE.getRate() != null && CurrencyConverter.INSTANCE.isShowingFiat()) {
       Money fiat = CurrencyConverter.INSTANCE.convertFromBTCToFiat(estimatedBalance);
-      balanceTextToShowFiat = "(" + CurrencyConverter.INSTANCE.getFiatAsLocalisedString(fiat) + ")";
+        balanceTextToShowFiat = "(" + CurrencyConverter.INSTANCE.getFiatAsLocalisedString(fiat) + ")";
     }
 
     if (useBusyStatus && perWalletModelData.isBusy()) {

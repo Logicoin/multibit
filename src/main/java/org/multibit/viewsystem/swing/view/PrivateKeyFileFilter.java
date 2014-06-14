@@ -18,7 +18,7 @@ package org.multibit.viewsystem.swing.view;
 import java.io.File;
 
 import org.multibit.controller.Controller;
-import org.multibit.model.bitcoin.BitcoinModel;
+import org.multibit.model.logicoin.BitcoinModel;
 
 public class PrivateKeyFileFilter extends javax.swing.filechooser.FileFilter {
 

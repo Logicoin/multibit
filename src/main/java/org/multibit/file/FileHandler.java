@@ -15,18 +15,18 @@
  */
 package org.multibit.file;
 
-import com.google.bitcoin.core.BlockChain;
-import com.google.bitcoin.core.ECKey;
-import com.google.bitcoin.core.Wallet;
-import com.google.bitcoin.crypto.KeyCrypterException;
+import com.google.logicoin.core.BlockChain;
+import com.google.logicoin.core.ECKey;
+import com.google.logicoin.core.Wallet;
+import com.google.logicoin.crypto.KeyCrypterException;
 import org.multibit.ApplicationDataDirectoryLocator;
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.message.Message;
 import org.multibit.message.MessageManager;
-import org.multibit.model.bitcoin.BitcoinModel;
-import org.multibit.model.bitcoin.WalletData;
-import org.multibit.model.bitcoin.WalletInfoData;
+import org.multibit.model.logicoin.BitcoinModel;
+import org.multibit.model.logicoin.WalletData;
+import org.multibit.model.logicoin.WalletInfoData;
 import org.multibit.model.core.CoreModel;
 import org.multibit.network.MultiBitService;
 import org.multibit.store.MultiBitWalletProtobufSerializer;
@@ -50,8 +50,8 @@ import java.util.*;
 public class FileHandler {
     private static Logger log = LoggerFactory.getLogger(FileHandler.class);
 
-    public static final String USER_PROPERTIES_FILE_NAME = "multibit.properties";
-    public static final String USER_PROPERTIES_HEADER_TEXT = "multibit";
+    public static final String USER_PROPERTIES_FILE_NAME = "multilogic.properties";
+    public static final String USER_PROPERTIES_HEADER_TEXT = "multilogic";
 
     private final Controller controller;
     private final BitcoinController bitcoinController;
@@ -457,13 +457,13 @@ public class FileHandler {
                 if (null != oldBackupFilename && !"".equals(oldBackupFilename)) {
                     oldBackupFile = new File(oldBackupFilename);
                 }
-                if (walletInfo != null && (MultiBitWalletVersion.PROTOBUF == walletInfo.getWalletVersion()
-                        || MultiBitWalletVersion.PROTOBUF_ENCRYPTED == walletInfo.getWalletVersion())) {
+                if (MultiBitWalletVersion.PROTOBUF == walletInfo.getWalletVersion()
+                        || MultiBitWalletVersion.PROTOBUF_ENCRYPTED == walletInfo.getWalletVersion()) {
                     newBackupFilename = copyExistingWalletToBackupAndDeleteOriginal(walletFile);
                 }
 
                 log.debug("Saving wallet file '" + walletFile.getAbsolutePath() + "' ...");
-                if (walletInfo != null && MultiBitWalletVersion.SERIALIZED == walletInfo.getWalletVersion()) {
+                if (MultiBitWalletVersion.SERIALIZED == walletInfo.getWalletVersion()) {
                     throw new WalletSaveException("Cannot save wallet '" + walletFile.getAbsolutePath() + "'. Serialized wallets are no longer supported.");
                 } else {
                     // See if there are any encrypted private keys - if there
@@ -498,7 +498,7 @@ public class FileHandler {
                                 + "' but this version of MultiBit does not understand that format.");
                     }
                 }
-                log.debug("... done saving wallet file. Wallet file size is " + walletFile.length() + " bytes.");
+                log.debug("... done saving wallet file.");
 
                 if (MultiBitWalletVersion.PROTOBUF == walletInfo.getWalletVersion()
                         || MultiBitWalletVersion.PROTOBUF_ENCRYPTED == walletInfo.getWalletVersion()) {

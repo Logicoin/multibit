@@ -15,13 +15,16 @@
  */
 package org.multibit.viewsystem.swing.action;
 
-import com.google.bitcoin.core.*;
-import com.google.bitcoin.core.Wallet.SendRequest;
-import com.google.bitcoin.crypto.KeyCrypterException;
-import org.multibit.controller.bitcoin.BitcoinController;
+import com.google.logicoin.core.Address;
+import com.google.logicoin.core.AddressFormatException;
+import com.google.logicoin.core.Utils;
+import com.google.logicoin.core.Wallet.SendRequest;
+import com.google.logicoin.core.WrongNetworkException;
+import com.google.logicoin.crypto.KeyCrypterException;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.message.Message;
 import org.multibit.message.MessageManager;
-import org.multibit.model.bitcoin.BitcoinModel;
+import org.multibit.model.logicoin.BitcoinModel;
 import org.multibit.utils.ImageLoader;
 import org.multibit.viewsystem.dataproviders.BitcoinFormDataProvider;
 import org.multibit.viewsystem.swing.MultiBitFrame;
@@ -35,7 +38,7 @@ import java.awt.event.ActionEvent;
 import java.math.BigInteger;
 
 /**
- * This {@link Action} shows the send bitcoin confirm dialog or validation dialog on an attempted spend.
+ * This {@link Action} shows the send logicoin confirm dialog or validation dialog on an attempted spend.
  */
 public class SendBitcoinConfirmAction extends MultiBitSubmitAction {
 
@@ -58,7 +61,7 @@ public class SendBitcoinConfirmAction extends MultiBitSubmitAction {
     }
 
     /**
-     * Complete the transaction to work out the fee) and then show the send bitcoin confirm dialog.
+     * Complete the transaction to work out the fee) and then show the send logicoin confirm dialog.
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -90,14 +93,8 @@ public class SendBitcoinConfirmAction extends MultiBitSubmitAction {
 
                 // Complete it (which works out the fee) but do not sign it yet.
                 log.debug("Just about to complete the tx (and calculate the fee)...");
-                boolean completedOk;
-                try {
-                    bitcoinController.getModel().getActiveWallet().completeTx(sendRequest, false);
-                  completedOk = true;
-                  log.debug("The fee after completing the transaction was " + sendRequest.fee);
-                } catch (InsufficientMoneyException ime) {
-                  completedOk = false;
-                }
+                boolean completedOk = bitcoinController.getModel().getActiveWallet().completeTx(sendRequest, false);
+                log.debug("The fee after completing the transaction was " + sendRequest.fee);
                 if (completedOk) {
                     // There is enough money.
 

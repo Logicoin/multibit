@@ -19,11 +19,11 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.viewsystem.swing.view.panels.CreateNewReceivingAddressPanel;
 import org.multibit.viewsystem.swing.view.components.FontSizer;
 
-import org.bitcoinj.wallet.Protos.Wallet.EncryptionType;
+import org.logicoinj.wallet.Protos.Wallet.EncryptionType;
 import org.multibit.CreateControllers;
 
 public class CreateNewReceivingAddressSubmitActionTest extends TestCase {      

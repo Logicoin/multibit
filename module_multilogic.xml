@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_multilogic" default="compile.module.multilogic">
+  <dirname property="module.multilogic.basedir" file="${ant.file.module_multilogic}"/>
+  
+  <property name="module.jdk.home.multilogic" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.multilogic" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.multilogic" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.multilogic" value="-encoding UTF-8 -source 1.6 -target 1.6 ${compiler.args}"/>
+  
+  <property name="multilogic.output.dir" value="${module.multilogic.basedir}/target/classes"/>
+  <property name="multilogic.testoutput.dir" value="${module.multilogic.basedir}/target/test-classes"/>
+  
+  <path id="multilogic.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="multilogic.module.production.classpath">
+    <path refid="${module.jdk.classpath.multilogic}"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.6.2.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-classic:1.0.9.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.0.9.classpath"/>
+    <path refid="library.maven:_com.madgag:sc-light-jdk15on:1.47.0.2.classpath"/>
+    <path refid="library.maven:_com.google.zxing:javase:1.6.classpath"/>
+    <path refid="library.maven:_com.google.zxing:core:1.6.classpath"/>
+    <path refid="library.maven:_com.google.guava:guava-base:r03.classpath"/>
+    <path refid="library.maven:_com.google.guava:guava-annotations:r03.classpath"/>
+    <path refid="library.maven:_org.simplericity.macify:macify:1.6.classpath"/>
+    <path refid="library.maven:_com.google:logicoinj:0.10.3-mb-alice.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-core:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_org.java-websocket:java-websocket:1.3.0.classpath"/>
+    <path refid="library.maven:_com.github.mmazi:rescu:1.6.1-snapshot.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.3.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.3.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.3.2.classpath"/>
+    <path refid="library.maven:_javax.ws.rs:jsr311-api:1.1.1.classpath"/>
+    <path refid="library.maven:_com.google.code.findbugs:jsr305:2.0.3.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-cavirtex:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-openexchangerates:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-btce:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-bitstamp:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.pusher:pusher-java-client:0.3.1.classpath"/>
+    <path refid="library.maven:_com.google.code.gson:gson:2.2.2.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-campbx:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-btcchina:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-kraken:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-bitcoinaverage:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchart:xchart:2.2.1.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.4.classpath"/>
+    <path refid="library.maven:_com.toedter:jcalendar:1.3.2.classpath"/>
+    <path refid="library.maven:_joda-time:joda-time:2.1.classpath"/>
+    <path refid="library.maven:_org.joda:joda-money:0.8.classpath"/>
+    <path refid="library.maven:_org.codehaus.jackson:jackson-mapper-asl:1.9.5.classpath"/>
+    <path refid="library.maven:_org.codehaus.jackson:jackson-core-asl:1.9.5.classpath"/>
+    <path refid="library.maven:_com.lambdaworks:scrypt:1.3.2.classpath"/>
+    <path refid="library.maven:_com.googlecode.jcsv:jcsv:1.4.0.classpath"/>
+    <pathelement location="C:/java/jre/lib/ext/jfxrt.jar"/>
+  </path>
+  
+  <path id="multilogic.runtime.production.module.classpath">
+    <pathelement location="${multilogic.output.dir}"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.6.2.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-classic:1.0.9.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.0.9.classpath"/>
+    <path refid="library.maven:_com.madgag:sc-light-jdk15on:1.47.0.2.classpath"/>
+    <path refid="library.maven:_com.google.zxing:javase:1.6.classpath"/>
+    <path refid="library.maven:_com.google.zxing:core:1.6.classpath"/>
+    <path refid="library.maven:_com.google.guava:guava-base:r03.classpath"/>
+    <path refid="library.maven:_com.google.guava:guava-annotations:r03.classpath"/>
+    <path refid="library.maven:_org.simplericity.macify:macify:1.6.classpath"/>
+    <path refid="library.maven:_com.google:logicoinj:0.10.3-mb-alice.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-core:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_org.java-websocket:java-websocket:1.3.0.classpath"/>
+    <path refid="library.maven:_com.github.mmazi:rescu:1.6.1-snapshot.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.3.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.3.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.3.2.classpath"/>
+    <path refid="library.maven:_javax.ws.rs:jsr311-api:1.1.1.classpath"/>
+    <path refid="library.maven:_com.google.code.findbugs:jsr305:2.0.3.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-cavirtex:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-openexchangerates:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-btce:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-bitstamp:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.pusher:pusher-java-client:0.3.1.classpath"/>
+    <path refid="library.maven:_com.google.code.gson:gson:2.2.2.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-campbx:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-btcchina:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-kraken:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-bitcoinaverage:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchart:xchart:2.2.1.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.4.classpath"/>
+    <path refid="library.maven:_com.toedter:jcalendar:1.3.2.classpath"/>
+    <path refid="library.maven:_joda-time:joda-time:2.1.classpath"/>
+    <path refid="library.maven:_org.joda:joda-money:0.8.classpath"/>
+    <path refid="library.maven:_org.codehaus.jackson:jackson-mapper-asl:1.9.5.classpath"/>
+    <path refid="library.maven:_org.codehaus.jackson:jackson-core-asl:1.9.5.classpath"/>
+    <path refid="library.maven:_com.lambdaworks:scrypt:1.3.2.classpath"/>
+    <path refid="library.maven:_com.googlecode.jcsv:jcsv:1.4.0.classpath"/>
+    <pathelement location="C:/java/jre/lib/ext/jfxrt.jar"/>
+  </path>
+  
+  <path id="multilogic.module.classpath">
+    <path refid="${module.jdk.classpath.multilogic}"/>
+    <pathelement location="${multilogic.output.dir}"/>
+    <path refid="library.maven:_junit:junit:4.8.2.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.6.2.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-classic:1.0.9.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.0.9.classpath"/>
+    <path refid="library.maven:_com.madgag:sc-light-jdk15on:1.47.0.2.classpath"/>
+    <path refid="library.maven:_com.google.zxing:javase:1.6.classpath"/>
+    <path refid="library.maven:_com.google.zxing:core:1.6.classpath"/>
+    <path refid="library.maven:_com.google.guava:guava-base:r03.classpath"/>
+    <path refid="library.maven:_com.google.guava:guava-annotations:r03.classpath"/>
+    <path refid="library.maven:_org.simplericity.macify:macify:1.6.classpath"/>
+    <path refid="library.maven:_com.google:logicoinj:0.10.3-mb-alice.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-core:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_org.java-websocket:java-websocket:1.3.0.classpath"/>
+    <path refid="library.maven:_com.github.mmazi:rescu:1.6.1-snapshot.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.3.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.3.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.3.2.classpath"/>
+    <path refid="library.maven:_javax.ws.rs:jsr311-api:1.1.1.classpath"/>
+    <path refid="library.maven:_com.google.code.findbugs:jsr305:2.0.3.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-cavirtex:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-openexchangerates:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-btce:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-bitstamp:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.pusher:pusher-java-client:0.3.1.classpath"/>
+    <path refid="library.maven:_com.google.code.gson:gson:2.2.2.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-campbx:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-btcchina:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-kraken:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-bitcoinaverage:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchart:xchart:2.2.1.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.4.classpath"/>
+    <path refid="library.maven:_com.toedter:jcalendar:1.3.2.classpath"/>
+    <path refid="library.maven:_joda-time:joda-time:2.1.classpath"/>
+    <path refid="library.maven:_org.joda:joda-money:0.8.classpath"/>
+    <path refid="library.maven:_org.codehaus.jackson:jackson-mapper-asl:1.9.5.classpath"/>
+    <path refid="library.maven:_org.codehaus.jackson:jackson-core-asl:1.9.5.classpath"/>
+    <path refid="library.maven:_com.lambdaworks:scrypt:1.3.2.classpath"/>
+    <path refid="library.maven:_com.googlecode.jcsv:jcsv:1.4.0.classpath"/>
+    <pathelement location="C:/java/jre/lib/ext/jfxrt.jar"/>
+  </path>
+  
+  <path id="multilogic.runtime.module.classpath">
+    <pathelement location="${multilogic.testoutput.dir}"/>
+    <pathelement location="${multilogic.output.dir}"/>
+    <path refid="library.maven:_junit:junit:4.8.2.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.6.2.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-classic:1.0.9.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.0.9.classpath"/>
+    <path refid="library.maven:_com.madgag:sc-light-jdk15on:1.47.0.2.classpath"/>
+    <path refid="library.maven:_com.google.zxing:javase:1.6.classpath"/>
+    <path refid="library.maven:_com.google.zxing:core:1.6.classpath"/>
+    <path refid="library.maven:_com.google.guava:guava-base:r03.classpath"/>
+    <path refid="library.maven:_com.google.guava:guava-annotations:r03.classpath"/>
+    <path refid="library.maven:_org.simplericity.macify:macify:1.6.classpath"/>
+    <path refid="library.maven:_com.google:logicoinj:0.10.3-mb-alice.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-core:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_org.java-websocket:java-websocket:1.3.0.classpath"/>
+    <path refid="library.maven:_com.github.mmazi:rescu:1.6.1-snapshot.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.3.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.3.2.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.3.2.classpath"/>
+    <path refid="library.maven:_javax.ws.rs:jsr311-api:1.1.1.classpath"/>
+    <path refid="library.maven:_com.google.code.findbugs:jsr305:2.0.3.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-cavirtex:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-openexchangerates:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-btce:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-bitstamp:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.pusher:pusher-java-client:0.3.1.classpath"/>
+    <path refid="library.maven:_com.google.code.gson:gson:2.2.2.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-campbx:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-btcchina:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-kraken:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchange:xchange-bitcoinaverage:2.1.0-snapshot.classpath"/>
+    <path refid="library.maven:_com.xeiam.xchart:xchart:2.2.1.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.4.classpath"/>
+    <path refid="library.maven:_com.toedter:jcalendar:1.3.2.classpath"/>
+    <path refid="library.maven:_joda-time:joda-time:2.1.classpath"/>
+    <path refid="library.maven:_org.joda:joda-money:0.8.classpath"/>
+    <path refid="library.maven:_org.codehaus.jackson:jackson-mapper-asl:1.9.5.classpath"/>
+    <path refid="library.maven:_org.codehaus.jackson:jackson-core-asl:1.9.5.classpath"/>
+    <path refid="library.maven:_com.lambdaworks:scrypt:1.3.2.classpath"/>
+    <path refid="library.maven:_com.googlecode.jcsv:jcsv:1.4.0.classpath"/>
+    <pathelement location="C:/java/jre/lib/ext/jfxrt.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.multilogic">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.multilogic">
+    <patternset refid="excluded.from.module.multilogic"/>
+  </patternset>
+  
+  <path id="multilogic.module.sourcepath">
+    <dirset dir="${module.multilogic.basedir}">
+      <include name="src/main/java"/>
+      <include name="src/main/resources"/>
+    </dirset>
+  </path>
+  
+  <path id="multilogic.module.test.sourcepath">
+    <dirset dir="${module.multilogic.basedir}">
+      <include name="src/test/java"/>
+      <include name="src/test/resources"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.multilogic" depends="compile.module.multilogic.production,compile.module.multilogic.tests" description="Compile module multilogic"/>
+  
+  <target name="compile.module.multilogic.production" depends="register.custom.compilers" description="Compile module multilogic; production classes">
+    <mkdir dir="${multilogic.output.dir}"/>
+    <javac2 destdir="${multilogic.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.multilogic}/javac">
+      <compilerarg line="${compiler.args.multilogic}"/>
+      <bootclasspath refid="multilogic.module.bootclasspath"/>
+      <classpath refid="multilogic.module.production.classpath"/>
+      <src refid="multilogic.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.multilogic"/>
+    </javac2>
+    
+    <copy todir="${multilogic.output.dir}">
+      <fileset dir="${module.multilogic.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.multilogic.basedir}/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.multilogic.tests" depends="register.custom.compilers,compile.module.multilogic.production" description="compile module multilogic; test classes" unless="skip.tests">
+    <mkdir dir="${multilogic.testoutput.dir}"/>
+    <javac2 destdir="${multilogic.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.multilogic}/javac">
+      <compilerarg line="${compiler.args.multilogic}"/>
+      <bootclasspath refid="multilogic.module.bootclasspath"/>
+      <classpath refid="multilogic.module.classpath"/>
+      <src refid="multilogic.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.multilogic"/>
+    </javac2>
+    
+    <copy todir="${multilogic.testoutput.dir}">
+      <fileset dir="${module.multilogic.basedir}/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.multilogic.basedir}/src/test/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.multilogic" description="cleanup module">
+    <delete dir="${multilogic.output.dir}"/>
+    <delete dir="${multilogic.testoutput.dir}"/>
+  </target>
+</project>

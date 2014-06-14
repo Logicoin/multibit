@@ -24,20 +24,20 @@ import javax.swing.JPasswordField;
 import javax.swing.SwingUtilities;
 
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.file.BackupManager;
 import org.multibit.file.FileHandler;
-import org.multibit.model.bitcoin.WalletData;
-import org.multibit.model.bitcoin.WalletBusyListener;
-import org.multibit.model.bitcoin.WalletInfoData;
+import org.multibit.model.logicoin.WalletData;
+import org.multibit.model.logicoin.WalletBusyListener;
+import org.multibit.model.logicoin.WalletInfoData;
 import org.multibit.store.MultiBitWalletVersion;
 import org.multibit.viewsystem.swing.MultiBitFrame;
 import org.multibit.viewsystem.swing.view.panels.RemovePasswordPanel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.bitcoin.core.Wallet;
-import com.google.bitcoin.crypto.KeyCrypterException;
+import com.google.logicoin.core.Wallet;
+import com.google.logicoin.crypto.KeyCrypterException;
 
 /**
  * This {@link Action} action removes the encryption of private keys in a wallet.

@@ -13,20 +13,19 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.multibit.controller.bitcoin;
+package org.multibit.controller.logicoin;
 
-import com.google.bitcoin.core.*;
-import com.google.bitcoin.script.Script;
-import com.google.bitcoin.uri.BitcoinURI;
-import com.google.bitcoin.uri.BitcoinURIParseException;
+import com.google.logicoin.core.*;
+import com.google.logicoin.uri.BitcoinURI;
+import com.google.logicoin.uri.BitcoinURIParseException;
 import org.multibit.controller.AbstractController;
 import org.multibit.controller.AbstractEventHandler;
 import org.multibit.controller.core.CoreController;
 import org.multibit.file.FileHandler;
 import org.multibit.message.MessageManager;
-import org.multibit.model.bitcoin.BitcoinModel;
-import org.multibit.model.bitcoin.WalletBusyListener;
-import org.multibit.model.bitcoin.WalletData;
+import org.multibit.model.logicoin.BitcoinModel;
+import org.multibit.model.logicoin.WalletBusyListener;
+import org.multibit.model.logicoin.WalletData;
 import org.multibit.network.MultiBitService;
 import org.multibit.viewsystem.View;
 import org.multibit.viewsystem.ViewSystem;
@@ -62,7 +61,7 @@ public class BitcoinController extends AbstractController<CoreController> implem
     private EventHandler eventHandler;
     
     /**
-     * The bitcoinj network interface.
+     * The logicoinj network interface.
      */
     private MultiBitService multiBitService;
     /**
@@ -232,13 +231,7 @@ public class BitcoinController extends AbstractController<CoreController> implem
         log.debug("Keys added : " + keys.toString());
     }
 
-  @Override
-  public void onScriptsAdded(Wallet wallet, List<Script> scripts) {
-    log.debug("Scripts added : " + scripts.toString());
-
-  }
-
-  @Override
+    @Override
     public void onReorganize(Wallet wallet) {
         log.debug("onReorganize called");
         List<WalletData> perWalletModelDataList = getModel().getPerWalletModelDataList();

@@ -25,19 +25,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JPasswordField;
 import javax.swing.SwingUtilities;
 
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.file.BackupManager;
 import org.multibit.file.FileHandler;
-import org.multibit.model.bitcoin.WalletBusyListener;
-import org.multibit.model.bitcoin.WalletData;
+import org.multibit.model.logicoin.WalletBusyListener;
+import org.multibit.model.logicoin.WalletData;
 import org.multibit.viewsystem.swing.view.panels.ChangePasswordPanel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.spongycastle.util.Arrays;
 
-import com.google.bitcoin.core.Wallet;
-import com.google.bitcoin.crypto.KeyCrypter;
-import com.google.bitcoin.crypto.KeyCrypterException;
+import com.google.logicoin.core.Wallet;
+import com.google.logicoin.crypto.KeyCrypter;
+import com.google.logicoin.crypto.KeyCrypterException;
 
 
 /**

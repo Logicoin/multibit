@@ -17,13 +17,13 @@ package org.multibit.viewsystem.swing.view.dialogs;
 
 
 
-import com.google.bitcoin.core.Transaction;
-import com.google.bitcoin.core.Wallet.BalanceType;
-import com.google.bitcoin.core.Wallet.SendRequest;
+import com.google.logicoin.core.Transaction;
+import com.google.logicoin.core.Wallet.BalanceType;
+import com.google.logicoin.core.Wallet.SendRequest;
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.exchange.CurrencyConverter;
-import org.multibit.model.bitcoin.BitcoinModel;
+import org.multibit.model.logicoin.BitcoinModel;
 import org.multibit.utils.ImageLoader;
 import org.multibit.viewsystem.swing.ColorAndFontConstants;
 import org.multibit.viewsystem.swing.MultiBitFrame;

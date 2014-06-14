@@ -21,7 +21,7 @@ import org.junit.Test;
 import org.multibit.ApplicationDataDirectoryLocator;
 import org.multibit.Constants;
 import org.multibit.CreateControllers;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.file.FileHandler;
 import org.multibit.network.MultiBitService;
 import org.multibit.viewsystem.simple.SimpleViewSystem;
@@ -66,7 +66,7 @@ public class CreateAndDeleteWalletsTest extends TestCase {
             controller = controllers.bitcoinController;
 
             log.debug("Creating Bitcoin service");
-            // create the MultiBitService that connects to the bitcoin network
+            // create the MultiBitService that connects to the logicoin network
             MultiBitService multiBitService = new MultiBitService(controller);
             controller.setMultiBitService(multiBitService);
 
@@ -120,16 +120,16 @@ public class CreateAndDeleteWalletsTest extends TestCase {
         File multiBitDirectory = FileHandler.createTempDirectory("CreateAndDeleteWalletsTest");
         String multiBitDirectoryPath = multiBitDirectory.getAbsolutePath();
 
-        System.out.println("Building MultiBit runtime in : " + multiBitDirectory.getAbsolutePath());
+        System.out.println("Building MultiLogic runtime in : " + multiBitDirectory.getAbsolutePath());
 
         // Create an empty multibit.properties.
-        File multibitProperties = new File(multiBitDirectoryPath + File.separator + "multibit.properties");
+        File multibitProperties = new File(multiBitDirectoryPath + File.separator + "multilogic.properties");
         multibitProperties.createNewFile();
         multibitProperties.deleteOnExit();
 
         // Copy in the checkpoints stored in git - this is in source/main/resources/.
-        File multibitCheckpoints = new File(multiBitDirectoryPath + File.separator + "multibit.checkpoints");
-        FileHandler.copyFile(new File("./src/main/resources/multibit.checkpoints"), multibitCheckpoints);
+        File multibitCheckpoints = new File(multiBitDirectoryPath + File.separator + "multilogic.checkpoints");
+        FileHandler.copyFile(new File("./src/main/resources/multilogic.checkpoints"), multibitCheckpoints);
         multibitCheckpoints.deleteOnExit();
 
         return multiBitDirectory;

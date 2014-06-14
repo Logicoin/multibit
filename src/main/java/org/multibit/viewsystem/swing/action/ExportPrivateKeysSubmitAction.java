@@ -15,14 +15,24 @@
  */
 package org.multibit.viewsystem.swing.action;
 
-import com.google.bitcoin.core.MultiBitBlockChain;
-import com.google.bitcoin.crypto.KeyCrypterException;
-import org.bitcoinj.wallet.Protos.Wallet.EncryptionType;
-import org.multibit.controller.bitcoin.BitcoinController;
+import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.IOException;
+import java.nio.CharBuffer;
+
+import javax.swing.Action;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.SwingWorker;
+
+import org.logicoinj.wallet.Protos.Wallet.EncryptionType;
+import org.multibit.controller.Controller;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.file.PrivateKeysHandler;
 import org.multibit.file.Verification;
-import org.multibit.model.bitcoin.WalletBusyListener;
-import org.multibit.model.bitcoin.WalletData;
+import org.multibit.model.logicoin.WalletData;
+import org.multibit.model.logicoin.WalletBusyListener;
 import org.multibit.utils.ImageLoader;
 import org.multibit.viewsystem.swing.MultiBitFrame;
 import org.multibit.viewsystem.swing.view.panels.ExportPrivateKeysPanel;
@@ -30,11 +40,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.spongycastle.util.Arrays;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.io.File;
-import java.io.IOException;
-import java.nio.CharBuffer;
+import com.google.logicoin.core.MultiBitBlockChain;
+import com.google.logicoin.crypto.KeyCrypterException;
 
 /**
  * This {@link Action} exports the active wallets private keys.
@@ -218,7 +225,8 @@ public class ExportPrivateKeysSubmitAction extends MultiBitSubmitAction implemen
                     // Perform a verification on the exported file to see if it
                     // is correct.
                     Verification verification = privateKeysHandler.verifyExportFile(exportPrivateKeysFile, finalBitcoinController.getModel()
-                            .getActivePerWalletModelData().getWallet(), blockChain, exportPasswordToUse, walletPassword);
+                            .getActivePerWalletModelData().getWallet(), blockChain, performEncryptionOfExportFile,
+                            exportPasswordToUse, walletPassword);
                     uiMessage2 = controller.getLocaliser().getString(verification.getMessageKey(), verification.getMessageData());
                     successMeasure = true;
                 } catch (IOException ioe) {

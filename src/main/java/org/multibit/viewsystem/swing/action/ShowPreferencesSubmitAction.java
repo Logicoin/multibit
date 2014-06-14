@@ -18,11 +18,11 @@ package org.multibit.viewsystem.swing.action;
 
 import org.joda.money.CurrencyUnit;
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.controller.exchange.ExchangeController;
 import org.multibit.exchange.CurrencyConverter;
 import org.multibit.exchange.TickerTimerTask;
-import org.multibit.model.bitcoin.BitcoinModel;
+import org.multibit.model.logicoin.BitcoinModel;
 import org.multibit.model.core.CoreModel;
 import org.multibit.model.exchange.ExchangeData;
 import org.multibit.model.exchange.ExchangeModel;
@@ -227,6 +227,11 @@ public class ShowPreferencesSubmitAction extends AbstractAction {
 
                 lookAndFeelHasChanged = true;
             }
+
+            //Minimze to tray
+            boolean newMinimizeToTray = dataProvider.getNewMinimizeToTray();
+            controller.getModel().setUserPreference(CoreModel.MINIMIZE_TO_TRAY, Boolean.valueOf(newMinimizeToTray).toString());
+            mainFrame.allowMinimizeToTray = Boolean.valueOf(newMinimizeToTray);
 
             // Currency ticker.
             boolean showTicker = dataProvider.getNewShowTicker();
@@ -446,6 +451,13 @@ public class ShowPreferencesSubmitAction extends AbstractAction {
                     this.bitcoinController.getModel().setBlinkEnabled(true);
                 }            
             }
+
+//            if (feeValidationError) {
+//                MessageManager.INSTANCE.addMessage(new Message(updateStatusText, false));
+//            } else {
+//                // Clear any previous validation error.
+//                MessageManager.INSTANCE.addMessage(new Message(" "));
+//            }
         } finally {
             if (mainFrame != null) {
                 mainFrame.setCursor(Cursor.getDefaultCursor());

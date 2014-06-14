@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-  ~ Copyright 2014 multibit.org
+  ~ Copyright 2013 logicoin.info
   ~
   ~ Licensed under the MIT license (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -21,12 +21,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.multibit</groupId>
-    <artifactId>multibit</artifactId>
-    <version>0.5.18</version>
-    <name>MultiBit</name>
-    <description>A Java Swing client for Bitcoin</description>
-    <url>https://multibit.org</url>
-    <!-- Use "mvn clean package" to build the code packaged into a basic multibit.jar 
+    <artifactId>multilogic</artifactId>
+    <version>0.1.2</version>
+    <name>Multilogic</name>
+    <description>A Java Swing client for Logicoin</description>
+    <url>https://logicoin.info</url>
+    <!-- Use "mvn clean package" to build the code packaged into a basic multilogic.jar 
   		Use "mvn clean verify" before submitting a patch Use "mvn clean install" 
   		to build the executable jar, installers and Mac DMG Use "mvn site:site" to 
   		generate a complete website under target/site Use "mvn site:run" to run a 
@@ -42,54 +42,41 @@
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/jim618/multibit/issues</url>
+        <url>https://github.com/logicoin/multilogic/issues</url>
     </issueManagement>
 
     <scm>
         <!-- Public read-only source -->
-        <url>https://github.com/jim618/multibit</url>
+        <url>https://github.com/logicoin/multilogic</url>
     </scm>
 
     <repositories>
-        <!-- Bitcoinj release repo -->
-        <repository>
-            <id>bitcoinj-release</id>
-            <url>http://distribution.bitcoinj.googlecode.com/git/releases</url>
-            <releases />
-        </repository>
-        <!-- zxing release repo -->
-        <repository>
-            <id>mvn-adamgent</id>
-            <url>http://mvn-adamgent.googlecode.com/svn/maven/release</url>
-            <releases/>
-        </repository>
-        <!-- MultiBit repository for releases -->
-        <repository>
-          <id>mbhd-maven-release</id>
-          <url>https://raw.githubusercontent.com/bitcoin-solutions/mbhd-maven/master/releases</url>
-          <releases/>
-        </repository>
-        <!-- MultiBit staging repository for snapshots -->
-        <repository>
-            <id>mbhd-maven-snapshot</id>
-            <url>https://raw.githubusercontent.com/bitcoin-solutions/mbhd-maven/master/snapshots</url>
-            <snapshots/>
-        </repository>
-        <!-- Sonatype snapshot repo -->
         <repository>
             <id>sonatype-oss-snapshot</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
             <snapshots/>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </repository>
         <repository>
             <id>sonatype-oss-snapshot2</id>
-            <url>https://oss.sonatype.org/content/groups/public</url>
             <snapshots/>
+            <url>https://oss.sonatype.org/content/groups/public</url>
+        </repository>
+        <!-- logicoin-j repo -->
+        <repository>
+            <id>logicoinj-release</id>
+            <releases />
+            <url>http://distribution.logicoinj.googlecode.com/git/releases</url>
+        </repository>
+        <!-- zxing repo -->
+        <repository>
+            <id>mvn-adamgent</id>
+            <url>http://mvn-adamgent.googlecode.com/svn/maven/release</url>
+            <name>Adam Gent Maven Repository</name>
         </repository>
     </repositories>
 
     <build>
-        <finalName>multibit</finalName>
+        <finalName>multilogic</finalName>
         <resources>
             <!-- filter properties files e.g. version.properties -->
             <resource>
@@ -203,7 +190,7 @@
                             <maxMemory>256m</maxMemory>
                             <attach>false</attach>
                             <addMavenDescriptor>false</addMavenDescriptor>
-                            <proguardInclude>src/main/proguard/multibit-exe.pro</proguardInclude>
+                            <proguardInclude>src/main/proguard/multilogic-exe.pro</proguardInclude>
                         </configuration>
                     </execution>
                 </executions>
@@ -239,20 +226,20 @@
                                         <include>install.xml</include>
                                         <include>readme.txt</include>
                                         <include>Unix_shortcutSpec.xml</include>
-                                        <include>multibit-protocol-handler.sh</include>
+                                        <include>multilogic-protocol-handler.sh</include>
                                     </includes>
                                 </resource>
                                 <resource>
                                     <directory>${basedir}/src/main/resources/images</directory>
                                     <includes>
                                         <include>installerLeft.png</include>
-                                        <include>multibit48.png</include>
+                                        <include>multilogic48.png</include>
                                     </includes>
                                 </resource>
                                 <resource>
                                     <directory>src/main/resources</directory>
                                     <includes>
-                                        <include>multibit.checkpoints</include>
+                                        <include>multilogic.checkpoints</include>
                                     </includes>
                                 </resource>
                                 <resource>
@@ -267,7 +254,7 @@
                                 <resource>
                                     <directory>target</directory>
                                     <includes>
-                                        <include>multibit-exe.jar</include>
+                                        <include>multilogic-exe.jar</include>
                                     </includes>
                                 </resource>
                             </resources>
@@ -299,13 +286,13 @@
                                     <directory>${basedir}/src/main/resources/images</directory>
                                     <includes>
                                         <include>installerLeft.png</include>
-                                        <include>multibit.ico</include>
+                                        <include>multilogic.ico</include>
                                     </includes>
                                 </resource>
                                 <resource>
                                     <directory>src/main/resources</directory>
                                     <includes>
-                                        <include>multibit.checkpoints</include>
+                                        <include>multilogic.checkpoints</include>
                                     </includes>
                                 </resource>
                                 <resource>
@@ -320,7 +307,7 @@
                                 <resource>
                                     <directory>target</directory>
                                     <includes>
-                                        <include>multibit.exe</include>
+                                        <include>multilogic.exe</include>
                                     </includes>
                                 </resource>
                             </resources>
@@ -339,12 +326,12 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${basedir}/target/MultiBit.app
+                            <outputDirectory>${basedir}/target/MultiLogic.app
                             </outputDirectory>
                             <resources>
                                 <resource>
                                     <!-- skeleton app including JRE -->
-                                    <directory>src/app-resources/MultiBit.app</directory>
+                                    <directory>src/app-resources/MultiLogic.app</directory>
                                 </resource>
                             </resources>
                         </configuration>
@@ -356,14 +343,14 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${basedir}/target/MultiBit.app/Contents/Resources/Java
+                            <outputDirectory>${basedir}/target/MultiLogic.app/Contents/Resources/Java
                             </outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>${basedir}/target/staging.linux</directory>
                                     <includes>
-                                        <include>multibit-exe.jar</include>
-                                        <include>multibit.checkpoints</include>
+                                        <include>multilogic-exe.jar</include>
+                                        <include>multilogic.checkpoints</include>
                                         <include>release_notes.txt</include>
                                         <include>configuration.md</include>
                                         <include>COPYING</include>
@@ -434,39 +421,39 @@
                                 <!-- Make the JavaApplicationStub in the Mac application bundle executable
                        									(it loses its 'x' permission after the copy) -->
                                 <chmod
-                                        file="${basedir}/target/MultiBit.app/Contents/MacOS/JavaApplicationStub"
+                                        file="${basedir}/target/MultiLogic.app/Contents/MacOS/JavaApplicationStub"
                                         perm="777" />
 
                                 <copy
-                                        todir="${basedir}/target/MultiBit-mac/MultiBit.app">
-                                    <fileset dir="${basedir}/target/MultiBit.app"
+                                        todir="${basedir}/target/MultiLogic-mac/MultiLogic.app">
+                                    <fileset dir="${basedir}/target/MultiLogic.app"
                                              includes="**" />
                                 </copy>
                                 <copy file="${basedir}/src/main/izpack/mac/readme.txt"
-                                      todir="${basedir}/target/MultiBit-mac" />
+                                      todir="${basedir}/target/MultiLogic-mac" />
 
                                 <!-- Create Applications Symbolic link -->
                                 <!-- WARNING, do not remove this symbolic link by Java(ant) -->
                                 <exec executable="ln" os="'Mac OS X'">
                                     <arg
-                                            line="-s /Applications ${basedir}/target/MultiBit-mac/Applications" />
+                                            line="-s /Applications ${basedir}/target/MultiLogic-mac/Applications" />
                                 </exec>
 
                                 <!-- Make the JavaAppLauncher in the MultiBit app (it loses its
                        									'x' permission after the copy) -->
                                 <chmod
-                                        file="${basedir}/target/MultiBit-mac/MultiBit.app/Contents/MacOS/JavaApplicationStub"
+                                        file="${basedir}/target/MultiLogic-mac/MultiLogic.app/Contents/MacOS/JavaApplicationStub"
                                         perm="777" />
 
                                 <!-- Sign the Mac app -->
                                 <exec executable="codesign" os="'Mac OS X'">
                                     <arg
-                                            line="--sign 'Developer ID Application: James Burton' --force ${basedir}/target/MultiBit-mac/MultiBit.app" />
+                                            line="--sign 'Developer ID Application: James Burton' --force ${basedir}/target/MultiLogic-mac/Multilogic.app" />
                                 </exec>
                                 <!-- Verify it is signed ok -->
                                 <exec executable="codesign" os="'Mac OS X'">
                                     <arg
-                                            line="--display --verbose=4 ${basedir}/target/MultiBit-mac/MultiBit.app" />
+                                            line="--display --verbose=4 ${basedir}/target/MultiLogic-mac/Multilogic.app" />
                                 </exec>
 
                                 <!-- create a DMG file -->
@@ -476,19 +463,19 @@
                                     <arg value="-imagekey"/>
                                     <arg value="zlib-level=9" />
                                     <arg value="-srcfolder" />
-                                    <arg value="${basedir}/target/MultiBit-mac" />
-                                    <arg value="${basedir}/target/multibit-${project.version}.dmg" />
+                                    <arg value="${basedir}/target/MultiLogic-mac" />
+                                    <arg value="${basedir}/target/multilogic-${project.version}.dmg" />
                                 </exec>
 
                                 <!-- IMPORTANT! -->
                                 <!-- Remove symbolic link before deleting tmp dir -->
                                 <exec executable="rm" os="'Mac OS X'">
-                                    <arg line="-R ${basedir}/target/MultiBit-mac/Applications" />
+                                    <arg line="-R ${basedir}/target/MultiLogic-mac/Applications" />
                                 </exec>
 
                                 <!-- get rid of temporary directory -->
                                 <delete includeEmptyDirs="true">
-                                    <fileset dir="${basedir}/target/MultiBit-mac" />
+                                    <fileset dir="${basedir}/target/MultiLogic-mac" />
                                 </delete>
                             </tasks>
                         </configuration>
@@ -496,7 +483,7 @@
                             <goal>run</goal>
                         </goals>
                     </execution>
-                    <!-- Produce a Win32 exe from the multibit-exe.jar (no Maven plugin 
+                    <!-- Produce a Win32 exe from the multilogic-exe.jar (no Maven plugin 
               						for JSmooth so drop down to ant) -->
                     <execution>
                         <id>jsmooth-installer2exe-exe</id>
@@ -533,7 +520,7 @@
                                          classpathref="jsmooth-classpathref" />
                                 <jsmoothgen project="src/main/jsmooth/installer.jsmooth"
                                             skeletonroot="src/main/jsmooth/skeletons" />
-                                <move file="target/multibit-windows.exe" tofile="target/multibit-${project.version}-windows-setup.exe" />
+                                <move file="target/multilogic-windows.exe" tofile="target/multilogic-${project.version}-windows-setup.exe" />
                             </tasks>
                         </configuration>
                         <goals>
@@ -593,7 +580,6 @@
                     <urn>com.xeiam.xchange:xchange-cavirtex:1.9.0:jar:null:compile:7bc0ef91d796ae56fca760a3e4f7e9e99b1c255a</urn>
                     <urn>com.xeiam.xchange:xchange-core:1.9.0:jar:null:compile:7af6544e86927d4fe927479be917cf6362119766</urn>
                     <urn>com.xeiam.xchange:xchange-kraken:1.9.0:jar:null:compile:88c89163c9a630e69927dec2bf98d4df55e7a50d</urn>
-                    <urn>com.xeiam.xchange:xchange-mtgox:1.9.0:jar:null:compile:39d115914439a8fe334af6bebf78bb499fa8bb61</urn>
                     <urn>com.xeiam.xchange:xchange-openexchangerates:1.9.0:jar:null:compile:ec35f83827d88bd5cfd90ae9dad39437bcb48313</urn>
                     <urn>com.xeiam.xchart:xchart:2.2.0:jar:null:compile:3e3d4f50597c0b64b12c1c5eec335e940dce9501</urn>
                     <urn>commons-codec:commons-codec:1.4:jar:null:compile:4216af16d38465bbab0f3dff8efa14204f7a399a</urn>
@@ -663,7 +649,7 @@
             <version>1.0.9</version>
             <scope>compile</scope>
         </dependency>
-        <!-- spongycastle used by bitcoinj clones -->
+        <!-- spongycastle used by logicoinj clones -->
         <dependency>
             <groupId>com.madgag</groupId>
             <artifactId>sc-light-jdk15on</artifactId>
@@ -689,19 +675,13 @@
         </dependency>
         <dependency>
             <groupId>com.google</groupId>
-            <artifactId>bitcoinj</artifactId>
-            <version>${bitcoinj.version}</version>
+            <artifactId>logicoinj</artifactId>
+            <version>${logicoinj.version}</version>
             <scope>compile</scope>
         </dependency>
          <dependency>
             <groupId>com.xeiam.xchange</groupId>
             <artifactId>xchange-core</artifactId>
-            <version>${xchange.version}</version>
-        </dependency>
-        <!-- XChange VirtEx exchange support -->
-        <dependency>
-            <groupId>com.xeiam.xchange</groupId>
-            <artifactId>xchange-cavirtex</artifactId>
             <version>${xchange.version}</version>
         </dependency>
         <!-- XChange Open Exchange Rates exchange support -->
@@ -726,6 +706,18 @@
         <dependency>
             <groupId>com.xeiam.xchange</groupId>
             <artifactId>xchange-campbx</artifactId>
+            <version>${xchange.version}</version>
+        </dependency>
+        <!-- XChange BTCChina exchange support -->
+        <dependency>
+            <groupId>com.xeiam.xchange</groupId>
+            <artifactId>xchange-btcchina</artifactId>
+            <version>${xchange.version}</version>
+        </dependency>
+        <!-- XChange Kraken exchange support -->
+        <dependency>
+            <groupId>com.xeiam.xchange</groupId>
+            <artifactId>xchange-kraken</artifactId>
             <version>${xchange.version}</version>
         </dependency>
         <dependency>
@@ -806,10 +798,10 @@
         </staging.linux.dir>
 
         <!-- Version of BitCoinJ to use (multiple uses) -->
-        <bitcoinj.version>0.11.2-MB-ALICE</bitcoinj.version>
+        <logicoinj.version>0.10.3-MB-ALICE</logicoinj.version>
 
         <!-- Version of XChange to use (multiple uses) -->
-        <xchange.version>1.10.0</xchange.version>
+        <xchange.version>2.1.0-SNAPSHOT</xchange.version>
 
         <!-- Version of spongycastle to use -->
         <sc-light-jdk15on.version>1.47.0.2</sc-light-jdk15on.version>

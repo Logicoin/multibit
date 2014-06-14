@@ -18,7 +18,7 @@ package org.multibit.viewsystem.swing.view;
 import java.io.File;
 
 import org.multibit.controller.Controller;
-import org.multibit.model.bitcoin.BitcoinModel;
+import org.multibit.model.logicoin.BitcoinModel;
 
 public class CsvFileFilter extends javax.swing.filechooser.FileFilter {
 

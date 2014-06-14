@@ -15,17 +15,17 @@
  */
 package org.multibit.viewsystem.swing.view.panels;
 
-import com.google.bitcoin.core.Sha256Hash;
-import com.google.bitcoin.core.Transaction;
-import com.google.bitcoin.core.Utils;
-import com.google.bitcoin.core.Wallet.SendRequest;
-import org.bitcoinj.wallet.Protos.Wallet.EncryptionType;
+import com.google.logicoin.core.Sha256Hash;
+import com.google.logicoin.core.Transaction;
+import com.google.logicoin.core.Utils;
+import com.google.logicoin.core.Wallet.SendRequest;
+import org.logicoinj.wallet.Protos.Wallet.EncryptionType;
 import org.multibit.MultiBit;
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.exchange.CurrencyConverter;
-import org.multibit.model.bitcoin.BitcoinModel;
-import org.multibit.model.bitcoin.WalletBusyListener;
+import org.multibit.model.logicoin.BitcoinModel;
+import org.multibit.model.logicoin.WalletBusyListener;
 import org.multibit.utils.ImageLoader;
 import org.multibit.viewsystem.swing.ColorAndFontConstants;
 import org.multibit.viewsystem.swing.MultiBitFrame;
@@ -43,7 +43,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * The send bitcoin confirm panel.
+ * The send logicoin confirm panel.
  */
 public class SendBitcoinConfirmPanel extends JPanel implements WalletBusyListener {
     private static final long serialVersionUID = 191435612399957705L;
@@ -116,7 +116,7 @@ public class SendBitcoinConfirmPanel extends JPanel implements WalletBusyListene
     }
 
     /**
-     * Initialise bitcoin confirm panel.
+     * Initialise logicoin confirm panel.
      */
     public void initUI() {
         JPanel mainPanel = new JPanel();
@@ -142,9 +142,9 @@ public class SendBitcoinConfirmPanel extends JPanel implements WalletBusyListene
         String sendAmountLocalised = CurrencyConverter.INSTANCE.prettyPrint(sendAmount);
 
         String fee = "0";
-        if (sendRequest != null) {
+        /*if (sendRequest != null) {
             fee = Utils.bitcoinValueToPlainString(sendRequest.fee);
-        }
+        } */
 
         String sendFeeLocalised = CurrencyConverter.INSTANCE.prettyPrint(fee);
 
@@ -674,20 +674,23 @@ public class SendBitcoinConfirmPanel extends JPanel implements WalletBusyListene
     }
     private String getConfidenceToolTip(int numberOfPeers) {
         StringBuilder builder = new StringBuilder("");
+        if (numberOfPeers == 0) {
+            builder.append(MultiBit.getController().getLocaliser().getString("transactionConfidence.seenByUnknownNumberOfPeers"));
+        } else {
             builder
                 .append(MultiBit.getController().getLocaliser().getString("transactionConfidence.seenBy"))
                 .append(" ");
             builder.append(numberOfPeers);
-            if (numberOfPeers == 1) {
-              builder.append(" ")
-                  .append(MultiBit.getController().getLocaliser().getString("transactionConfidence.peer"))
-                  .append(".");
-            } else {
-              builder
+            if (numberOfPeers > 1)
+                builder
                     .append(" ")
                     .append(MultiBit.getController().getLocaliser().getString("transactionConfidence.peers"))
                     .append(".");
-            }
+            else
+                builder.append(" ")
+                    .append(MultiBit.getController().getLocaliser().getString("transactionConfidence.peer"))
+                    .append(".");
+        }
         return builder.toString();
     }
 

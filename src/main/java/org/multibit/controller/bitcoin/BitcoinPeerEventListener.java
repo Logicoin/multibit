@@ -1,8 +1,8 @@
-package org.multibit.controller.bitcoin;
+package org.multibit.controller.logicoin;
 
-import com.google.bitcoin.core.*;
+import com.google.logicoin.core.*;
 import org.multibit.controller.Controller;
-import org.multibit.model.bitcoin.WalletData;
+import org.multibit.model.logicoin.WalletData;
 import org.multibit.model.core.StatusEnum;
 import org.multibit.network.ReplayManager;
 import org.multibit.viewsystem.swing.view.panels.SendBitcoinConfirmPanel;
@@ -85,9 +85,7 @@ public class BitcoinPeerEventListener implements PeerEventListener {
             Wallet loopWallet = perWalletModelData.getWallet();
             if (loopWallet != null) {
               if (loopWallet.isTransactionRelevant(transaction)) {
-                if (!(transaction.isTimeLocked()
-                        && transaction.getConfidence().getSource() != TransactionConfidence.Source.SELF)
-                        && loopWallet.isTransactionRisky(transaction, null)) {
+                if (!(transaction.isTimeLocked() && transaction.getConfidence().getSource() != TransactionConfidence.Source.SELF)) {
                   if (loopWallet.getTransaction(transaction.getHash()) == null) {
                     log.debug("MultiBit adding a new pending transaction for the wallet '"
                             + perWalletModelData.getWalletDescription() + "'\n" + transaction.toString());

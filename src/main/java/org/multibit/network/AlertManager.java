@@ -37,13 +37,13 @@ import javax.swing.SwingWorker;
 
 import org.multibit.Localiser;
 import org.multibit.controller.core.CoreController;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.file.FileHandler;
 import org.multibit.message.Message;
 import org.multibit.message.MessageManager;
 import org.multibit.model.core.CoreModel;
-import org.multibit.model.bitcoin.BitcoinModel;
-import org.multibit.model.bitcoin.WalletData;
+import org.multibit.model.logicoin.BitcoinModel;
+import org.multibit.model.logicoin.WalletData;
 import org.multibit.utils.ImageLoader;
 import org.multibit.utils.VersionComparator;
 import org.multibit.viewsystem.swing.MultiBitFrame;
@@ -51,10 +51,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.spongycastle.crypto.params.KeyParameter;
 
-import com.google.bitcoin.core.ECKey;
-import com.google.bitcoin.core.NetworkParameters;
-import com.google.bitcoin.core.Utils;
-import com.google.bitcoin.core.Wallet;
+import com.google.logicoin.core.ECKey;
+import com.google.logicoin.core.NetworkParameters;
+import com.google.logicoin.core.Utils;
+import com.google.logicoin.core.Wallet;
 
 
 
@@ -66,9 +66,9 @@ public enum AlertManager {
 
     private Logger log = LoggerFactory.getLogger(AlertManager.class);
 
-    public static final String DEFAULT_VERSION_URL = "https://www.multibit.org/version.txt";
+    public static final String DEFAULT_VERSION_URL = "http://logicoin.info/version.txt";
 
-    public static final String RELEASES_URL = "https://www.multibit.org/releases.html";
+    public static final String RELEASES_URL = "http://logicoin.info/";
 
     public static final int NUMBER_OF_TIMES_TO_REPEAT_ALERT = 3;
     

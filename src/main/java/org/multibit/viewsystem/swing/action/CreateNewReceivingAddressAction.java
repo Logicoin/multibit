@@ -21,8 +21,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.Action;
 
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
-import org.multibit.model.bitcoin.WalletData;
+import org.multibit.controller.logicoin.BitcoinController;
+import org.multibit.model.logicoin.WalletData;
 import org.multibit.viewsystem.swing.MultiBitFrame;
 import org.multibit.viewsystem.swing.view.dialogs.CreateNewReceivingAddressDialog;
 import org.multibit.viewsystem.swing.view.panels.ReceiveBitcoinPanel;

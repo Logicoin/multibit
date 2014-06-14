@@ -34,15 +34,15 @@ package org.multibit.qrcode;
 import java.awt.image.BufferedImage;
 
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.exchange.CurrencyConverter;
 import org.multibit.exchange.CurrencyConverterResult;
-import org.multibit.model.bitcoin.BitcoinModel;
+import org.multibit.model.logicoin.BitcoinModel;
 
-import com.google.bitcoin.core.Address;
-import com.google.bitcoin.core.AddressFormatException;
-import com.google.bitcoin.core.Utils;
-import com.google.bitcoin.uri.BitcoinURI;
+import com.google.logicoin.core.Address;
+import com.google.logicoin.core.AddressFormatException;
+import com.google.logicoin.core.Utils;
+import com.google.logicoin.uri.BitcoinURI;
 import com.google.zxing.WriterException;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.google.zxing.qrcode.encoder.ByteMatrix;
@@ -108,10 +108,10 @@ public class QRCodeGenerator {
             }
             this.bitcoinController.getModel().setActiveWalletPreference(BitcoinModel.SEND_PERFORM_PASTE_NOW, "false");
         } catch (IllegalArgumentException e) {
-            //log.warn("The address '" + address + "' could not be converted to a bitcoin address. (IAE)");
+            //log.warn("The address '" + address + "' could not be converted to a logicoin address. (IAE)");
             return null;
         } catch (AddressFormatException e) {
-            //log.warn("The address '" + address + "' could not be converted to a bitcoin address. (AFE)");
+            //log.warn("The address '" + address + "' could not be converted to a logicoin address. (AFE)");
             return null;
         }
 

@@ -34,21 +34,21 @@ public final class ApplicationInstanceManager {
     private static ApplicationInstanceListener subListener;
 
     /**
-     * MultiBit port number, as specified in
+     * MultiLogic port number. Must be different to Multibit as specified in
      * http://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
      */
-    public static final int MULTIBIT_NETWORK_SOCKET = 8331;
+    public static final int MULTIBIT_NETWORK_SOCKET = 22778;
 
     /**
      * Multibit message start - must end with newline
      */
-    public static final String MESSAGE_START = "$$MultiBitMessageStart$$\n";
+    public static final String MESSAGE_START = "$$MultiLogicMessageStart$$\n";
 
     /**
      * Multibit message end - must end with newline (nonsense text to make it
      * unlikely it appears in a URI)
      */
-    public static final String MESSAGE_END = "\n$$X9Q3J7MessageEnd$$\n";
+    public static final String MESSAGE_END = "\n$$12XwJ7MessageEnd$$\n";
 
     private static Thread instanceListenerThread;
 

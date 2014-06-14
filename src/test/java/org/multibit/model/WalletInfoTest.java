@@ -15,8 +15,8 @@
  */
 package org.multibit.model;
 
-import org.multibit.model.bitcoin.WalletAddressBookData;
-import org.multibit.model.bitcoin.WalletInfoData;
+import org.multibit.model.logicoin.WalletAddressBookData;
+import org.multibit.model.logicoin.WalletInfoData;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -25,7 +25,7 @@ import junit.framework.TestCase;
 import org.junit.Test;
 import org.multibit.Constants;
 import org.multibit.CreateControllers;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.store.MultiBitWalletVersion;
 
 public class WalletInfoTest extends TestCase {

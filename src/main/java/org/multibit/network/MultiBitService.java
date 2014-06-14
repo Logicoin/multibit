@@ -15,28 +15,27 @@
  */
 package org.multibit.network;
 
-import com.google.bitcoin.core.*;
-import com.google.bitcoin.core.Wallet.SendRequest;
-import com.google.bitcoin.crypto.KeyCrypterException;
-import com.google.bitcoin.net.discovery.DnsDiscovery;
-import com.google.bitcoin.net.discovery.IrcDiscovery;
-import com.google.bitcoin.store.BlockStore;
-import com.google.bitcoin.store.BlockStoreException;
-import com.google.bitcoin.store.SPVBlockStore;
+import com.google.logicoin.core.MultiBitBlockChain;
+import com.google.logicoin.core.*;
+import com.google.logicoin.core.Wallet.SendRequest;
+import com.google.logicoin.crypto.KeyCrypterException;
+import com.google.logicoin.discovery.DnsDiscovery;
+import com.google.logicoin.store.BlockStore;
+import com.google.logicoin.store.BlockStoreException;
+import com.google.logicoin.store.SPVBlockStore;
 import com.google.common.util.concurrent.ListenableFuture;
-import org.bitcoinj.wallet.Protos.Wallet.EncryptionType;
+import org.logicoinj.wallet.Protos.Wallet.EncryptionType;
 import org.multibit.ApplicationDataDirectoryLocator;
-import org.multibit.MultiBit;
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.file.BackupManager;
 import org.multibit.file.FileHandlerException;
 import org.multibit.file.WalletSaveException;
 import org.multibit.message.Message;
 import org.multibit.message.MessageManager;
-import org.multibit.model.bitcoin.BitcoinModel;
-import org.multibit.model.bitcoin.WalletData;
-import org.multibit.model.bitcoin.WalletInfoData;
+import org.multibit.model.logicoin.BitcoinModel;
+import org.multibit.model.logicoin.WalletData;
+import org.multibit.model.logicoin.WalletInfoData;
 import org.multibit.model.core.StatusEnum;
 import org.multibit.store.MultiBitWalletVersion;
 import org.multibit.store.WalletVersionException;
@@ -61,12 +60,12 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * <p>
- * MultiBitService encapsulates the interaction with the bitcoin netork
+ * MultiBitService encapsulates the interaction with the logicoin netork
  * including: o Peers o Block chain download o sending / receiving bitcoins
  * <p/>
  * The testnet can be slow or flaky as it's a shared resource. You can use the
  * <a href="http://sourceforge
- * .net/projects/bitcoin/files/Bitcoin/testnet-in-a-box/">testnet in a box</a>
+ * .net/projects/logicoin/files/Bitcoin/testnet-in-a-box/">testnet in a box</a>
  * to do everything purely locally.
  * </p>
  */
@@ -75,7 +74,7 @@ public class MultiBitService {
 
   private static final Logger log = LoggerFactory.getLogger(MultiBitService.class);
 
-  public static final String MULTIBIT_PREFIX = "multibit";
+  public static final String MULTIBIT_PREFIX = "multilogic";
   public static final String TESTNET_PREFIX = "testnet";
   public static final String TESTNET3_PREFIX = "testnet3";
   public static final String SEPARATOR = "-";
@@ -116,7 +115,7 @@ public class MultiBitService {
       java.text.SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
       java.util.Calendar cal = Calendar.getInstance(new SimpleTimeZone(0, "GMT"));
       format.setCalendar(cal);
-      genesisBlockCreationDate = format.parse("2009-01-03 18:15:05");
+      genesisBlockCreationDate = format.parse("2014-04-10 00:47:52");
     } catch (ParseException e) {
       // Will never happen.
       e.printStackTrace();
@@ -339,14 +338,16 @@ public class MultiBitService {
     }
 
     if (!peersSpecified) {
-      // Use DNS for production, IRC for test.
+/*      // Use DNS for production, IRC for test.
       if (TESTNET3_GENESIS_HASH.equals(bitcoinController.getModel().getNetworkParameters().getGenesisBlock().getHashAsString())) {
         peerGroup.addPeerDiscovery(new IrcDiscovery(IRC_CHANNEL_TESTNET3));
       } else if (NetworkParameters.testNet().equals(bitcoinController.getModel().getNetworkParameters())) {
         peerGroup.addPeerDiscovery(new IrcDiscovery(IRC_CHANNEL_TEST));
       } else {
         peerGroup.addPeerDiscovery(new DnsDiscovery(networkParameters));
-      }
+      }*/
+        //LGC: Only production for now.
+        peerGroup.addPeerDiscovery(new DnsDiscovery(networkParameters));
     }
     // Add the controller as a PeerEventListener.
     peerGroup.addEventListener(bitcoinController.getPeerEventListener());
@@ -368,22 +369,16 @@ public class MultiBitService {
     }
   }
 
-  public void recalculateFastCatchupAndFilter() {
-    if (peerGroup != null) {
-      peerGroup.recalculateFastCatchupAndFilter(PeerGroup.FilterRecalculateMode.FORCE_SEND);
-    }
-  }
-
   public static String getFilePrefix() {
-    BitcoinController bitcoinController = MultiBit.getBitcoinController();
+/*    BitcoinController bitcoinController = MultiBit.getBitcoinController();
     // testnet3
     if (TESTNET3_GENESIS_HASH.equals(bitcoinController.getModel().getNetworkParameters().getGenesisBlock().getHashAsString())) {
       return MULTIBIT_PREFIX + SEPARATOR + TESTNET3_PREFIX;
     } else if (NetworkParameters.testNet().equals(bitcoinController.getModel().getNetworkParameters())) {
       return MULTIBIT_PREFIX + SEPARATOR + TESTNET_PREFIX;
-    } else {
+    } else {*/
       return MULTIBIT_PREFIX;
-    }
+    //} //TODO LGC: No testnet...
   }
 
   /**
@@ -570,7 +565,7 @@ public class MultiBitService {
   public Transaction sendCoins(WalletData perWalletModelData, SendRequest sendRequest,
                                CharSequence password) throws java.io.IOException, AddressFormatException, KeyCrypterException {
 
-    // Ping the peers to check the bitcoin network connection
+    // Ping the peers to check the logicoin network connection
     List<Peer> connectedPeers = peerGroup.getConnectedPeers();
     boolean atLeastOnePingWorked = false;
     if (connectedPeers != null) {
@@ -579,7 +574,6 @@ public class MultiBitService {
         log.debug("Ping: {}", peer.getAddress().toString());
 
         try {
-
           ListenableFuture<Long> result = peer.ping();
           result.get(4, TimeUnit.SECONDS);
           atLeastOnePingWorked = true;
@@ -626,7 +620,7 @@ public class MultiBitService {
       // method.
       peerGroup.broadcastTransaction(sendRequest.tx);
 
-      log.debug("Sending transaction '" + Utils.bytesToHexString(sendRequest.tx.bitcoinSerialize()) + "'");
+      log.debug("Sending transaction '" + Utils.bytesToHexString(sendRequest.tx.logicoinSerialize()) + "'");
     } catch (VerificationException e1) {
       // TODO Auto-generated catch block
       e1.printStackTrace();

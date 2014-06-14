@@ -21,8 +21,8 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
-import org.multibit.model.bitcoin.WalletTableData;
+import org.multibit.controller.logicoin.BitcoinController;
+import org.multibit.model.logicoin.WalletTableData;
 import org.multibit.utils.ImageLoader;
 import org.multibit.viewsystem.swing.MultiBitFrame;
 import org.multibit.viewsystem.swing.view.dialogs.TransactionDetailsDialog;

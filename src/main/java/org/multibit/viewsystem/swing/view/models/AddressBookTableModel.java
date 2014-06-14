@@ -20,9 +20,9 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
-import org.multibit.model.bitcoin.WalletAddressBookData;
-import org.multibit.model.bitcoin.WalletInfoData;
+import org.multibit.controller.logicoin.BitcoinController;
+import org.multibit.model.logicoin.WalletAddressBookData;
+import org.multibit.model.logicoin.WalletInfoData;
 
 public class AddressBookTableModel extends DefaultTableModel {
 

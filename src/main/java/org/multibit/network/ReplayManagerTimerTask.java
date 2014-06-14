@@ -1,8 +1,8 @@
 package org.multibit.network;
 
-import com.google.bitcoin.store.BlockStoreException;
+import com.google.logicoin.store.BlockStoreException;
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -16,9 +16,9 @@
 package org.multibit.viewsystem.swing.action;
 
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
-import org.multibit.model.bitcoin.BitcoinModel;
-import org.multibit.model.bitcoin.WalletData;
+import org.multibit.controller.logicoin.BitcoinController;
+import org.multibit.model.logicoin.BitcoinModel;
+import org.multibit.model.logicoin.WalletData;
 import org.multibit.viewsystem.View;
 import org.multibit.viewsystem.dataproviders.ShowUriDialogDataProvider;
 import org.multibit.viewsystem.swing.MultiBitFrame;

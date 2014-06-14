@@ -15,17 +15,34 @@
  */
 package org.multibit.viewsystem.swing.action;
 
-import com.google.bitcoin.core.ECKey;
-import com.google.bitcoin.core.Utils;
-import com.google.bitcoin.core.Wallet;
-import com.google.bitcoin.crypto.KeyCrypter;
-import com.google.bitcoin.crypto.KeyCrypterException;
-import org.bitcoinj.wallet.Protos.Wallet.EncryptionType;
-import org.multibit.controller.bitcoin.BitcoinController;
-import org.multibit.file.*;
+import java.awt.Cursor;
+import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.IOException;
+import java.nio.CharBuffer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
+
+import javax.swing.Action;
+import javax.swing.ImageIcon;
+import javax.swing.JPasswordField;
+import javax.swing.SwingWorker;
+
+import org.logicoinj.wallet.Protos.Wallet.EncryptionType;
+import org.multibit.controller.Controller;
+import org.multibit.controller.logicoin.BitcoinController;
+import org.multibit.file.BackupManager;
+import org.multibit.file.PrivateKeyAndDate;
+import org.multibit.file.PrivateKeysHandler;
+import org.multibit.file.PrivateKeysHandlerException;
+import org.multibit.file.WalletSaveException;
 import org.multibit.message.Message;
-import org.multibit.model.bitcoin.WalletBusyListener;
-import org.multibit.model.bitcoin.WalletData;
+import org.multibit.message.MessageManager;
+import org.multibit.model.logicoin.WalletData;
+import org.multibit.model.logicoin.WalletBusyListener;
 import org.multibit.network.ReplayManager;
 import org.multibit.network.ReplayTask;
 import org.multibit.utils.DateUtils;
@@ -37,14 +54,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.spongycastle.crypto.params.KeyParameter;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.io.File;
-import java.io.IOException;
-import java.nio.CharBuffer;
-import java.util.*;
-import java.util.List;
+import com.google.logicoin.core.ECKey;
+import com.google.logicoin.core.Utils;
+import com.google.logicoin.core.Wallet;
+import com.google.logicoin.crypto.KeyCrypter;
+import com.google.logicoin.crypto.KeyCrypterException;
+import com.piuk.blockchain.MyWallet;
 
 /**
  * This {@link Action} imports the private keys to the active wallet.
@@ -155,6 +170,69 @@ public class ImportPrivateKeysSubmitAction extends MultiBitSubmitAction implemen
 
                 changeWalletBusyAndImportInBackground(privateKeyAndDateArray,  CharBuffer.wrap(walletPasswordField.getPassword()));
                 importPrivateKeysPanel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+            } else if (importPrivateKeysPanel.myWalletEncryptedFileChooser.accept(importFile)) {
+                log.debug("MyWallet encrypted wallet backup import.");
+                String importFileContents = PrivateKeysHandler.readFile(importFile);
+
+                String mainPassword = new String(passwordField.getPassword());
+                String secondPassword = new String(passwordField2.getPassword());
+
+                MyWallet wallet = new MyWallet(importFileContents, mainPassword);
+
+                log.debug("Create MyWallet wallet " + wallet);
+
+                boolean needSecondPassword = false;
+                if (wallet.isDoubleEncrypted()) {
+                    if ("".equals(secondPassword)) {
+                        log.debug("Second password missing but is needed");
+                        needSecondPassword = true;
+                        importPrivateKeysPanel.requestSecondPassword();
+                    }
+                }
+
+                log.debug("needSecondPassword = " + needSecondPassword);
+
+                if (!needSecondPassword) {
+                    wallet.setTemporySecondPassword(secondPassword);
+
+                    Wallet logicoinj = wallet.getBitcoinJWallet();
+                    log.debug("logicoinj wallet.1 = " + logicoinj);
+                    
+                    Collection<PrivateKeyAndDate> privateKeyAndDateArray = new ArrayList<PrivateKeyAndDate>();
+                    if (logicoinj != null && logicoinj.getKeychain() != null) {
+                        log.debug("Found " + logicoinj.getKeychainSize() + " keys to import.1");
+                        for (ECKey key : logicoinj.getKeychain()) {
+                            privateKeyAndDateArray.add(new PrivateKeyAndDate(key, null));
+                        }
+                    } else {
+                        log.debug("Bitcoinj wallet was null or contained no keychain.1");
+                    }
+                    changeWalletBusyAndImportInBackground(privateKeyAndDateArray, CharBuffer.wrap(walletPasswordField.getPassword()));
+                }
+
+            } else if (importPrivateKeysPanel.myWalletPlainFileChooser.accept(importFile)) {
+                log.debug("MyWallet unencrypted wallet backup import.");
+                
+                String importFileContents = PrivateKeysHandler.readFile(importFile);
+                log.debug("Imported file contents length was " + importFileContents.length());
+                
+                MyWallet wallet = new MyWallet(importFileContents);
+                log.debug("MyWallet wallet.2 = " + wallet);
+
+                Wallet logicoinj = wallet.getBitcoinJWallet();
+                log.debug("logicoinj wallet.2 = " + logicoinj);
+                
+                Collection<PrivateKeyAndDate> privateKeyAndDateArray = new ArrayList<PrivateKeyAndDate>();
+                if (logicoinj != null && logicoinj.getKeychain() != null) {
+                    log.debug("Found " + logicoinj.getKeychainSize() + " keys to import.2");
+                    for (ECKey key : logicoinj.getKeychain()) {
+                        privateKeyAndDateArray.add(new PrivateKeyAndDate(key, null));
+                    }
+                } else {
+                    log.debug("Bitcoinj wallet was null or contained no keychain.2");
+                }
+                changeWalletBusyAndImportInBackground(privateKeyAndDateArray, CharBuffer.wrap(walletPasswordField.getPassword()));
+
             } else {
                 log.error("The wallet import file was not a recognised type.");
             }
@@ -165,6 +243,7 @@ public class ImportPrivateKeysSubmitAction extends MultiBitSubmitAction implemen
             importPrivateKeysPanel.setMessageText1(controller.getLocaliser().getString(
                     "importPrivateKeysSubmitAction.privateKeysUnlockFailure", new Object[] { e.getMessage() }));
             importPrivateKeysPanel.setMessageText2(" ");
+            return;
         } finally {
             importPrivateKeysPanel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         }
@@ -305,11 +384,6 @@ public class ImportPrivateKeysSubmitAction extends MultiBitSubmitAction implemen
 
                     // Import was successful.
                     uiMessage = finalBitcoinController.getLocaliser().getString("importPrivateKeysSubmitAction.privateKeysImportSuccess");
-
-                    // Recalculate the bloom filter.
-                    if (bitcoinController.getMultiBitService() != null) {
-                      bitcoinController.getMultiBitService().recalculateFastCatchupAndFilter();
-                    }
 
                     // Backup the private keys.
                     privateKeysBackupFile = finalBitcoinController.getFileHandler().backupPrivateKeys(CharBuffer.wrap(walletPassword));

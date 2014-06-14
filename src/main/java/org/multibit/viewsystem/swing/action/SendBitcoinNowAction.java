@@ -15,17 +15,17 @@
  */
 package org.multibit.viewsystem.swing.action;
 
-import com.google.bitcoin.core.AddressFormatException;
-import com.google.bitcoin.core.Transaction;
-import com.google.bitcoin.core.Wallet.SendRequest;
-import com.google.bitcoin.crypto.KeyCrypterException;
-import org.bitcoinj.wallet.Protos.Wallet.EncryptionType;
+import com.google.logicoin.core.AddressFormatException;
+import com.google.logicoin.core.Transaction;
+import com.google.logicoin.core.Wallet.SendRequest;
+import com.google.logicoin.crypto.KeyCrypterException;
+import org.logicoinj.wallet.Protos.Wallet.EncryptionType;
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.file.WalletSaveException;
 import org.multibit.message.Message;
 import org.multibit.message.MessageManager;
-import org.multibit.model.bitcoin.*;
+import org.multibit.model.logicoin.*;
 import org.multibit.viewsystem.swing.MultiBitFrame;
 import org.multibit.viewsystem.swing.view.panels.SendBitcoinConfirmPanel;
 import org.slf4j.Logger;
@@ -37,7 +37,7 @@ import java.io.IOException;
 import java.nio.CharBuffer;
 
 /**
- * This {@link Action} actually spends bitcoin.
+ * This {@link Action} actually spends logicoin.
  */
 public class SendBitcoinNowAction extends AbstractAction implements WalletBusyListener {
 
@@ -93,7 +93,7 @@ public class SendBitcoinNowAction extends AbstractAction implements WalletBusyLi
   }
 
   /**
-   * Actually send the bitcoin.
+   * Actually send the logicoin.
    */
   @Override
   public void actionPerformed(ActionEvent event) {
@@ -214,7 +214,7 @@ public class SendBitcoinNowAction extends AbstractAction implements WalletBusyLi
       log.error(e.getMessage(), e);
       message = controller.getLocaliser().getString("sendBitcoinNowAction.pingFailure");
     } catch (Exception e) {
-      // Really trying to catch anything that goes wrong with the send bitcoin.
+      // Really trying to catch anything that goes wrong with the send logicoin.
       log.error(e.getMessage(), e);
       message = e.getMessage();
     } finally {

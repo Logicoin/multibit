@@ -28,8 +28,8 @@ import org.junit.Test;
 import org.multibit.CreateControllers;
 import org.multibit.Localiser;
 import org.multibit.controller.core.CoreController;
-import org.multibit.controller.bitcoin.BitcoinController;
-import org.multibit.model.bitcoin.BitcoinModel;
+import org.multibit.controller.logicoin.BitcoinController;
+import org.multibit.model.logicoin.BitcoinModel;
 import org.multibit.model.exchange.ExchangeModel;
 
 public class CurrencyConverterTest extends TestCase {
@@ -77,7 +77,7 @@ public class CurrencyConverterTest extends TestCase {
         converter.setCurrencyUnit(CurrencyUnit.of("USD"));
         converter.setRate(BigDecimal.valueOf(5.0));
 
-        Money converted = converter.convertFromBTCToFiat(CurrencyConverter.NUMBER_OF_SATOSHI_IN_ONE_BITCOIN);   // 1 bitcoin
+        Money converted = converter.convertFromBTCToFiat(CurrencyConverter.NUMBER_OF_SATOSHI_IN_ONE_BITCOIN);   // 1 logicoin
         
         assertNotNull(converted);
         assertEquals("Wrong currency", "USD", converted.getCurrencyUnit().getCurrencyCode());

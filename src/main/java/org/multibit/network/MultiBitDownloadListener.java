@@ -16,9 +16,9 @@
 
 package org.multibit.network;
 
-import com.google.bitcoin.core.DownloadListener;
+import com.google.logicoin.core.DownloadListener;
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.message.Message;
 import org.multibit.message.MessageManager;
 import org.multibit.viewsystem.swing.view.walletlist.SingleWalletPanelDownloadListener;

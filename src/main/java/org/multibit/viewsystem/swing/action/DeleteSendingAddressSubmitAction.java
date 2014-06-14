@@ -21,10 +21,10 @@ import javax.swing.Action;
 import javax.swing.JTable;
 
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
-import org.multibit.model.bitcoin.WalletAddressBookData;
-import org.multibit.model.bitcoin.WalletData;
-import org.multibit.model.bitcoin.WalletInfoData;
+import org.multibit.controller.logicoin.BitcoinController;
+import org.multibit.model.logicoin.WalletAddressBookData;
+import org.multibit.model.logicoin.WalletData;
+import org.multibit.model.logicoin.WalletInfoData;
 import org.multibit.store.MultiBitWalletVersion;
 import org.multibit.utils.ImageLoader;
 import org.multibit.viewsystem.swing.view.dialogs.DeleteSendingAddressConfirmDialog;

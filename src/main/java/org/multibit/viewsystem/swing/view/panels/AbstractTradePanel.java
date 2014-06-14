@@ -15,19 +15,19 @@
  */
 package org.multibit.viewsystem.swing.view.panels;
 
-import com.google.bitcoin.core.Address;
-import com.google.bitcoin.uri.BitcoinURI;
-import com.google.bitcoin.uri.BitcoinURIParseException;
+import com.google.logicoin.core.Address;
+import com.google.logicoin.uri.BitcoinURI;
+import com.google.logicoin.uri.BitcoinURIParseException;
 import org.joda.money.Money;
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.exchange.*;
 import org.multibit.message.Message;
 import org.multibit.message.MessageManager;
-import org.multibit.model.bitcoin.BitcoinModel;
-import org.multibit.model.bitcoin.WalletAddressBookData;
-import org.multibit.model.bitcoin.WalletData;
-import org.multibit.model.bitcoin.WalletInfoData;
+import org.multibit.model.logicoin.BitcoinModel;
+import org.multibit.model.logicoin.WalletAddressBookData;
+import org.multibit.model.logicoin.WalletData;
+import org.multibit.model.logicoin.WalletInfoData;
 import org.multibit.model.core.CoreModel;
 import org.multibit.qrcode.QRCodeEncoderDecoder;
 import org.multibit.qrcode.QRCodeGenerator;
@@ -213,7 +213,7 @@ public abstract class AbstractTradePanel extends JPanel implements Viewable, Cop
     }
 
     /**
-     * is it the receive bitcoin panel (return true) or the send bitcoin panel
+     * is it the receive logicoin panel (return true) or the send logicoin panel
      * (return false)
      */
     protected abstract boolean isReceiveBitcoin();

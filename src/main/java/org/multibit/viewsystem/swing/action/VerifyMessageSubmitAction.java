@@ -15,12 +15,12 @@
  */
 package org.multibit.viewsystem.swing.action;
 
-import com.google.bitcoin.core.Address;
-import com.google.bitcoin.core.AddressFormatException;
-import com.google.bitcoin.core.ECKey;
-import com.google.bitcoin.core.WrongNetworkException;
-import org.multibit.controller.bitcoin.BitcoinController;
-import org.multibit.model.bitcoin.WalletBusyListener;
+import com.google.logicoin.core.Address;
+import com.google.logicoin.core.AddressFormatException;
+import com.google.logicoin.core.ECKey;
+import com.google.logicoin.core.WrongNetworkException;
+import org.multibit.controller.logicoin.BitcoinController;
+import org.multibit.model.logicoin.WalletBusyListener;
 import org.multibit.utils.WhitespaceTrimmer;
 import org.multibit.viewsystem.swing.MultiBitFrame;
 import org.multibit.viewsystem.swing.view.panels.VerifyMessagePanel;

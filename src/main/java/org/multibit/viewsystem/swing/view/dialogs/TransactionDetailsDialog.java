@@ -15,15 +15,15 @@
  */
 package org.multibit.viewsystem.swing.view.dialogs;
 
-import com.google.bitcoin.core.*;
+import com.google.logicoin.core.*;
 import org.multibit.MultiBit;
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.exchange.CurrencyConverter;
 import org.multibit.message.Message;
 import org.multibit.message.MessageManager;
-import org.multibit.model.bitcoin.WalletData;
-import org.multibit.model.bitcoin.WalletTableData;
+import org.multibit.model.logicoin.WalletData;
+import org.multibit.model.logicoin.WalletTableData;
 import org.multibit.model.core.CoreModel;
 import org.multibit.utils.ImageLoader;
 import org.multibit.viewsystem.swing.ColorAndFontConstants;
@@ -52,9 +52,9 @@ import java.util.List;
  */
 public class TransactionDetailsDialog extends MultiBitDialog {
 
-    private static final String BLOCKCHAIN_INFO_PREFIX = "http://blockchain.info/tx-index/";
+    private static final String BLOCKCHAIN_INFO_PREFIX = "http://explorer.cryptocoinrevival.com/";
 
-    private static final String BLOCKEXPLORER_TRANSACTION_PREFIX = "http://blockexplorer.com/tx/";
+    private static final String BLOCKEXPLORER_TRANSACTION_PREFIX = "http://explorer.cryptocoinrevival.com/tx/";
 
     private static final long serialVersionUID = 191435612345057705L;
 
@@ -296,15 +296,15 @@ public class TransactionDetailsDialog extends MultiBitDialog {
         detailPanel.add(totalDebitText, constraints);
 
         BigInteger fee = rowTableData.getTransaction().calculateFee(this.bitcoinController.getModel().getActiveWallet());
-        feeText.setText(CurrencyConverter.INSTANCE.prettyPrint(Utils.bitcoinValueToPlainString(fee)));
+        feeText.setText(CurrencyConverter.INSTANCE.prettyPrint(Utils.logicoinValueToPlainString(fee)));
         if (BigInteger.ZERO.compareTo(value) > 0) {
             // debit
             amountLabel.setText(controller.getLocaliser().getString("transactionDetailsDialog.amountSent"));
             try {
                 BigInteger totalDebit = rowTableData.getTransaction().getValue(this.bitcoinController.getModel().getActiveWallet()).negate();
                 BigInteger amountSent = totalDebit.subtract(fee);
-                totalDebitText.setText(CurrencyConverter.INSTANCE.prettyPrint(Utils.bitcoinValueToPlainString(totalDebit)));
-                amountText.setText(CurrencyConverter.INSTANCE.prettyPrint(Utils.bitcoinValueToPlainString(amountSent)));
+                totalDebitText.setText(CurrencyConverter.INSTANCE.prettyPrint(Utils.logicoinValueToPlainString(totalDebit)));
+                amountText.setText(CurrencyConverter.INSTANCE.prettyPrint(Utils.logicoinValueToPlainString(amountSent)));
             } catch (ScriptException e) {
                 e.printStackTrace();
             }
@@ -316,7 +316,7 @@ public class TransactionDetailsDialog extends MultiBitDialog {
         } else {
             // Credit - cannot calculate fee so do not show.
             try {
-                amountText.setText(CurrencyConverter.INSTANCE.prettyPrint(Utils.bitcoinValueToPlainString(rowTableData.getTransaction().getValue(
+                amountText.setText(CurrencyConverter.INSTANCE.prettyPrint(Utils.logicoinValueToPlainString(rowTableData.getTransaction().getValue(
                         this.bitcoinController.getModel().getActiveWallet()))));
             } catch (ScriptException e) {
                 e.printStackTrace();
@@ -428,7 +428,7 @@ public class TransactionDetailsDialog extends MultiBitDialog {
         
         ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();
         try {
-            rowTableData.getTransaction().bitcoinSerialize(byteOutputStream);
+            rowTableData.getTransaction().logicoinSerialize(byteOutputStream);
             sizeText.setText(controller.getLocaliser().getString("showPreferencesPanel.size.text", new Object[] {byteOutputStream.size()}));
         } catch (IOException e1) {
             e1.printStackTrace();
@@ -436,7 +436,7 @@ public class TransactionDetailsDialog extends MultiBitDialog {
 
 
         if (isBrowserSupported()) {
-            MultiBitButton openInBlockExplorerButton = new MultiBitButton(controller.getLocaliser().getString("transactionDetailsDialog.viewAtBlockExplorer"));
+/*            MultiBitButton openInBlockExplorerButton = new MultiBitButton(controller.getLocaliser().getString("transactionDetailsDialog.viewAtBlockExplorer"));
             openInBlockExplorerButton.addActionListener(new ActionListener() {
 
                 @Override
@@ -448,7 +448,7 @@ public class TransactionDetailsDialog extends MultiBitDialog {
                         log.debug(e.getMessage());
                     }
                     
-                }});
+                }});*/
             
             constraints.fill = GridBagConstraints.NONE;
             constraints.gridx = 2;
@@ -458,7 +458,7 @@ public class TransactionDetailsDialog extends MultiBitDialog {
             constraints.gridwidth = 1;
             constraints.gridheight = 1;
             constraints.anchor = GridBagConstraints.LINE_END;
-            detailPanel.add(openInBlockExplorerButton, constraints);
+            //detailPanel.add(openInBlockExplorerButton, constraints);
 
             MultiBitButton openInBlockChainInfoButton = new MultiBitButton(controller.getLocaliser().getString("transactionDetailsDialog.viewAtBlockChainInfo"));
             openInBlockChainInfoButton.addActionListener(new ActionListener() {

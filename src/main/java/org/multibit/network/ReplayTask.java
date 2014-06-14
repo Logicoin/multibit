@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.multibit.message.Message;
-import org.multibit.model.bitcoin.WalletData;
+import org.multibit.model.logicoin.WalletData;
 
 /**
  * A class encapsulating a request on one or more wallets to perform a

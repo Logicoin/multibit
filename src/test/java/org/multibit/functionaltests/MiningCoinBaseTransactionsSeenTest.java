@@ -16,19 +16,19 @@
 package org.multibit.functionaltests;
 
 
-import com.google.bitcoin.core.DumpedPrivateKey;
-import com.google.bitcoin.core.NetworkParameters;
-import com.google.bitcoin.core.Transaction;
-import com.google.bitcoin.core.Wallet;
-import com.google.bitcoin.core.Wallet.BalanceType;
+import com.google.logicoin.core.DumpedPrivateKey;
+import com.google.logicoin.core.NetworkParameters;
+import com.google.logicoin.core.Transaction;
+import com.google.logicoin.core.Wallet;
+import com.google.logicoin.core.Wallet.BalanceType;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.multibit.ApplicationDataDirectoryLocator;
 import org.multibit.Constants;
 import org.multibit.CreateControllers;
 import org.multibit.file.FileHandler;
-import org.multibit.model.bitcoin.WalletData;
-import org.multibit.model.bitcoin.WalletInfoData;
+import org.multibit.model.logicoin.WalletData;
+import org.multibit.model.logicoin.WalletInfoData;
 import org.multibit.network.MultiBitService;
 import org.multibit.network.ReplayManager;
 import org.multibit.network.ReplayTask;
@@ -85,7 +85,7 @@ public class MiningCoinBaseTransactionsSeenTest extends TestCase {
             final CreateControllers.Controllers controllers = CreateControllers.createControllers(applicationDataDirectoryLocator);
 
             log.debug("Creating Bitcoin service");
-            // Create the MultiBitService that connects to the bitcoin network.
+            // Create the MultiBitService that connects to the logicoin network.
             MultiBitService multiBitService = new MultiBitService(controllers.bitcoinController);
             log.debug("multiBitService = " + multiBitService);
 
@@ -205,13 +205,13 @@ public class MiningCoinBaseTransactionsSeenTest extends TestCase {
         System.out.println("Building MultiBit runtime in : " + multiBitDirectory.getAbsolutePath());
 
         // Create an empty multibit.properties.
-        File multibitProperties = new File(multiBitDirectoryPath + File.separator + "multibit.properties");
+        File multibitProperties = new File(multiBitDirectoryPath + File.separator + "multilogic.properties");
         multibitProperties.createNewFile();
         multibitProperties.deleteOnExit();
 
         // Copy in the checkpoints stored in git - this is in source/main/resources/.
-        File multibitCheckpoints = new File(multiBitDirectoryPath + File.separator + "multibit.checkpoints");
-        FileHandler.copyFile(new File("./src/main/resources/multibit.checkpoints"), multibitCheckpoints);
+        File multibitCheckpoints = new File(multiBitDirectoryPath + File.separator + "multilogic.checkpoints");
+        FileHandler.copyFile(new File("./src/main/resources/multilogic.checkpoints"), multibitCheckpoints);
         multibitCheckpoints.deleteOnExit();
 
         return multiBitDirectory;

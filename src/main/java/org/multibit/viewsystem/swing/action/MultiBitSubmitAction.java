@@ -4,10 +4,10 @@ import javax.swing.AbstractAction;
 import javax.swing.Icon;
 
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.message.Message;
 import org.multibit.message.MessageManager;
-import org.multibit.model.bitcoin.WalletData;
+import org.multibit.model.logicoin.WalletData;
 import org.multibit.viewsystem.swing.view.panels.HelpContentsPanel;
 
 /**

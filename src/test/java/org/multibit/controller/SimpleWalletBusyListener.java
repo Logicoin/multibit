@@ -1,6 +1,6 @@
 package org.multibit.controller;
 
-import org.multibit.model.bitcoin.WalletBusyListener;
+import org.multibit.model.logicoin.WalletBusyListener;
 
 public class SimpleWalletBusyListener implements WalletBusyListener {
     boolean walletBusy = false;

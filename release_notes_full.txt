@@ -1,14 +1,25 @@
-MultiBit release notes.
+MultiLogic release notes:
 
-18 Dec 2013 Version 0.5.16
-Changes:
-#340. Fixed: if you close a wallet then open it immediately it does not appear.
-#347, #410. Updated code to bitcoinj 0.10.3 (transaction is now resent ok if not initially sent).
-#407. Changed reset block chain and transactions to always run before wallet creation date.
-#408. Send is now prevented until sync completes.
-#409. Examined code to see if 'tx is missing' can be improved.
-#415. Removed 'File | Delete Wallet' entirely for safety reasons.
-#418. Now performs a ping of peers before send as a network check.
+12 Jun 2014: 0.1.2
++ Prepare for Release
+
+
+23 Feb 2014: 0.1.1
++ Saves window state on close so size and position are restored at launch.
++ Option to minimize to tray. Stays in dock on OS X because Apple has no API to change that dynamically. On Linux the icon lacks transparanecy due to an internal Java bug. Sorry, can't change that :/
++ Only allow nodes with more than 105000 blocks to connect. Prevents running on the wrong side of the recent fork.
++ Remove blockchain.info wallet import (leftover)
++ Only allow .wallet files to imported. Prevents users from trying to open .dat files.
++ Update Japanese translation
+#2: Switched to BitcoinAverage as BTC/fiat rate provider
+#5: Update French transaltion
+#7: Allow parallel running of MultiBit and MultiLogic
+#10: Fix "BTC" leftover in transaction details
+
+7 Feb 2014: 0.1.0
+Initial release.
+
+MultiBit release notes.
 
 19 Nov 2013 Version 0.5.15
 Changes:
@@ -20,7 +31,7 @@ Changes:
 #262. Added support for new blockchain.info wallet format to Import Private Keys.
 #280, #284. Fixed: MultiBit does not build.
 #283. Fixed: Misleading error message when trying to send very small amount.
-#293. Updated build to bitcoinj 0.10.2
+#293. Updated build to logicoinj 0.10.2
 #297. Added a message when wallet closes (with location of wallet).
 #299. Added Serbian as a target language.
 #304. Updated XChange library to 1.9.0
@@ -36,7 +47,7 @@ Changes:
 #202. Improved closedown of MultiBit. There are now messages in the titlebar.
 #209. Fixed bug: Request labels being wiped after private key import.
 #223. Tidied up UI.
-#224. Updated to bitcoinj 0.10.1.
+#224. Updated to logicoinj 0.10.1.
 #225. Updated to XChange 1.8.0.
 #229. Renamed windows installer to get automatic administrator elevation.
 
@@ -57,7 +68,7 @@ Changes:
 
 24 June 2013 - Version 0.5.12
 Changes:
-+ Updated to bitcoinj v0.9
++ Updated to logicoinj v0.9
 + Fees are now calculated automatically. Code by Matt Corallo.
 + The size of the transaction appears on the transactions detail dialog
 + Fixed issues 150, 165 - Automatically recreates BlockStore if there are problems loading it
@@ -90,7 +101,7 @@ Changes:
 Version 0.5.9beta
 Features:
 + I18n update.
-+ Update to bitcoinj 0.8-SNAPSHOT
++ Update to logicoinj 0.8-SNAPSHOT
 + added 'Close Wallet'
 + wallets now resync automatically when opened
 + added better sync control on import and reset blockchain
@@ -106,7 +117,7 @@ Bug fixes:
 Mar 2013 Version 0.4.23
 
 + Additional checking of incoming transactions.
-+ Updated to bitcoinj 0.7.2.
++ Updated to logicoinj 0.7.2.
 + Notifies user when a new version of MultiBit is available.
 + Tidied up UI when switching "look and feels".
 + Change is now sent to the second key in a wallet if present (this helps people who have imported a blockchain.info backup).
@@ -181,7 +192,7 @@ announced by Retep on 10 Jan 2013. (This is still being worked on).
  
 Improvements
 + Improved status notifications for transactions
-+ Update to bitcoinj 0.6.1
++ Update to logicoinj 0.6.1
 + Coinbase transactions now have a pickaxe icon and the status icon fills more slowly
 + Now only hits currency server if ticker is shown or currency conversions are on
 + Fiat currency fields only shown on Send and Request if fiat currency successfully found from remote server
@@ -228,7 +239,7 @@ Bug fixes
 + Arabic translation 100% 
 + Automatic backup of private keys on wallet encryption/ change password/ create new private keys.
 + Forward port of everything from 0.4.13
-+ Update to bitcoinj version 0.6
++ Update to logicoinj version 0.6
 
 17 Oct 2012 Version 0.4.13
 + Send confirm dialog shows peer propagation
@@ -257,21 +268,21 @@ User interface
 +  Various UI tidyups
 
 System
-+  Faster bitcoin network connection
++  Faster logicoin network connection
 +  Rolling wallet backup to mitigate sudden power loss
 +  Automatic recopy of installer blockchain if required
-+  Update to bitcoinj version 0.6
++  Update to logicoinj version 0.6
 +  Update to XChart 0.2.0
 
 
 24 Sep 2012 Version 0.5.4beta
-+  Faster bitcoin network connection
++  Faster logicoin network connection
 +  Rolling wallet backup to mitigate sudden power loss
 +  Chart of wallet balance for last 30 days added
 +  Drag and drop QR code to desktop
 +  Eliminated tab flicker
 +  Tab title tooltips now show ok
-+  Update to bitcoinj version 0.6-SNAPSHOT
++  Update to logicoinj version 0.6-SNAPSHOT
 +  Update to XChart 0.2.0
 
 
@@ -323,14 +334,14 @@ System
 
 
 23 Jul 2012 Version 0.4.5
-+  Faster connection to the bitcoin network at startup
++  Faster connection to the logicoin network at startup
 +  More help on 'Available to spend'
 
 
 17 Jul 2012 Version 0.4.4
 Enhancements:
 +  I18n update
-+  Update to bitcoinj 0.5.2
++  Update to logicoinj 0.5.2
 
 
 09 Jul 2012 Version 0.4.3
@@ -356,7 +367,7 @@ Bug fix:
 18 Jun 2012 Version 0.4.0
 Enhancements:
 +  Introduction of protobuf format for new wallets
-+  Upgrade to bitcoinj v0.5.1 library
++  Upgrade to logicoinj v0.5.1 library
 +  Upgrade to XChange v1.01 library
 +  Added Message window
 +  Minor UI improvements to help browser
@@ -427,7 +438,7 @@ Enhancements
 
 20 Feb 2012 Version 0.3.0Beta3
 Enhancements
-+  Moved to bitcoinj V4-SNAPSHOT
++  Moved to logicoinj V4-SNAPSHOT
 +  I18N refresh - including Russian update.
 
 
@@ -493,8 +504,8 @@ Bug fixes
 Enhancements
 +  German added.
 +  Added 'Your Wallets' screen and a wallet picker in the toolbar.
-+  Added swatch generator on Receive bitcoin and Send bitcoin screens.
-+  Decreased minimum fee amount to 0.0001 to match bitcoin v0.4 .
++  Added swatch generator on Receive logicoin and Send logicoin screens.
++  Decreased minimum fee amount to 0.0001 to match logicoin v0.4 .
 +  Visual indication of which panel you are on added.
 +  'Available to spend' now hidden when amount is equal to estimated balance.
 +  Added number of blocks as a tool tip to the "Online/ Connecting..." status label.
@@ -502,8 +513,8 @@ Enhancements
 +  User data is now stored in user specific roaming/ application data folders.
 
 Bug fixes
-+  Fixed selection colour for Receive and Send bitcoin.
-+  Fixed label alignment on Receive bitcoin.
++  Fixed selection colour for Receive and Send logicoin.
++  Fixed label alignment on Receive logicoin.
 +  Fixed that directories appear in 'Open Wallet' for Windows.
 
 
@@ -528,9 +539,9 @@ Enhancements
 +  Various user interface improvements.
 
 Bug fixes
-+  On send bitcoin status was incorrectly showing 'confirmed' icon rather than 'unconfirmed(0)'. Fixed.
++  On send logicoin status was incorrectly showing 'confirmed' icon rather than 'unconfirmed(0)'. Fixed.
 +  multibit.properties and wallet info files are now stored in UTF8.
-+  Receive address in Receive bitcoin panel is now copiable.
++  Receive address in Receive logicoin panel is now copiable.
 
 
 13 Aug 2011.  Version 0.1.2
@@ -543,7 +554,7 @@ Enhancements:
 +  There is now a project_plan.txt describing planned future development.
 	
 Bug fixes
-+  Copy address in receive bitcoin cleared label bug fixed.
++  Copy address in receive logicoin cleared label bug fixed.
 +  Not connecting to testnet when multibit.properties setting testOrProductionNetwork = test fixed.
 
 	
@@ -555,4 +566,4 @@ Initial working version with:
 
 
 1 Jul 2011.  Version 0.1.1alpha
-Non functional version illustrating user interface for review by bitcoinj group.
+Non functional version illustrating user interface for review by logicoinj group.

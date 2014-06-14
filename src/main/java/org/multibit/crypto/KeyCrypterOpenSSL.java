@@ -15,8 +15,11 @@
  */
 package org.multibit.crypto;
 
-import com.google.bitcoin.core.Utils;
-import com.google.bitcoin.crypto.KeyCrypterException;
+import java.io.UnsupportedEncodingException;
+import java.nio.CharBuffer;
+import java.security.SecureRandom;
+import java.util.Arrays;
+
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,9 +32,9 @@ import org.spongycastle.crypto.modes.CBCBlockCipher;
 import org.spongycastle.crypto.paddings.PaddedBufferedBlockCipher;
 import org.spongycastle.crypto.params.ParametersWithIV;
 
-import java.io.UnsupportedEncodingException;
-import java.security.SecureRandom;
-import java.util.Arrays;
+import com.google.logicoin.core.Utils;
+import com.google.logicoin.crypto.KeyCrypterException;
+import com.google.common.base.Preconditions;
 
 /**
  * This class encrypts and decrypts a string in a manner that is compatible with
@@ -144,7 +147,7 @@ public class KeyCrypterOpenSSL {
      * @param password
      *            The password to use for encryption
      * @return The encrypted string
-     * @throws KeyCrypterException
+     * @throws EncrypterDecrypterException
      */
     public String encrypt(String plainText, CharSequence password) throws KeyCrypterException {
         try {
@@ -169,12 +172,12 @@ public class KeyCrypterOpenSSL {
     /**
      * Password based encryption using AES - CBC 256 bits.
      * 
-     * @param plainTextAsBytes
+     * @param plainBytes
      *            The bytes to encrypt
      * @param password
      *            The password to use for encryption
      * @return SALT_LENGTH bytes of salt followed by the encrypted bytes.
-     * @throws KeyCrypterException
+     * @throws EncrypterDecrypterException
      */
     public byte[] encrypt(byte[] plainTextAsBytes, CharSequence password) throws KeyCrypterException {
         try {
@@ -188,11 +191,12 @@ public class KeyCrypterOpenSSL {
             BufferedBlockCipher cipher = new PaddedBufferedBlockCipher(new CBCBlockCipher(new AESFastEngine()));
             cipher.init(true, key);
             byte[] encryptedBytes = new byte[cipher.getOutputSize(plainTextAsBytes.length)];
-            final int processLength = cipher.processBytes(plainTextAsBytes, 0, plainTextAsBytes.length, encryptedBytes, 0);
-            final int doFinalLength = cipher.doFinal(encryptedBytes, processLength);
+            int length = cipher.processBytes(plainTextAsBytes, 0, plainTextAsBytes.length, encryptedBytes, 0);
+
+            cipher.doFinal(encryptedBytes, length);
 
             // The result bytes are the SALT_LENGTH bytes followed by the encrypted bytes.
-            return concat(salt, Arrays.copyOf(encryptedBytes, processLength + doFinalLength));
+            return concat(salt, encryptedBytes);
         } catch (Exception e) {
             throw new KeyCrypterException("Could not encrypt bytes '" + Utils.bytesToHexString(plainTextAsBytes) + "'", e);
         }
@@ -203,10 +207,10 @@ public class KeyCrypterOpenSSL {
      * 
      * @param textToDecode
      *            The code to decrypt
-     * @param password THe password to use
+     * @param passwordbThe
      *            password to use for decryption
      * @return The decrypted text
-     * @throws KeyCrypterException
+     * @throws EncrypterDecrypterException
      */
     public String decrypt(String textToDecode, CharSequence password) throws KeyCrypterException {
         try {
@@ -232,10 +236,10 @@ public class KeyCrypterOpenSSL {
      * 
      * @param bytesToDecode
      *            The bytes to decrypt
-     * @param password The password to use
+     * @param passwordbThe
      *            password to use for decryption
      * @return The decrypted bytes
-     * @throws KeyCrypterException
+     * @throws EncrypterDecrypterException
      */
     public byte[] decrypt(byte[] bytesToDecode, CharSequence password) throws KeyCrypterException {
         try {
@@ -254,10 +258,11 @@ public class KeyCrypterOpenSSL {
             cipher.init(false, key);
 
             byte[] decryptedBytes = new byte[cipher.getOutputSize(cipherBytes.length)];
-            final int processLength = cipher.processBytes(cipherBytes, 0, cipherBytes.length, decryptedBytes, 0);
-            final int doFinalLength = cipher.doFinal(decryptedBytes, processLength);
+            int length = cipher.processBytes(cipherBytes, 0, cipherBytes.length, decryptedBytes, 0);
 
-            return Arrays.copyOf(decryptedBytes, processLength + doFinalLength);
+            cipher.doFinal(decryptedBytes, length);
+
+            return decryptedBytes;
         } catch (Exception e) {
             throw new KeyCrypterException("Could not decrypt input string", e);
         }
@@ -292,6 +297,15 @@ public class KeyCrypterOpenSSL {
     }
 
     /**
+     * Get the OpenSSL OPENSSL_SALTED_TEXT prefix text as bytes.
+     * 
+     * @return The openSSL salted prefix bytes
+     */
+    public byte[] getOpenSSLSaltedBytes() {
+        return openSSLSaltedBytes;
+    }
+
+    /**
      * Get the magic text that starts every OpenSSL encrypted String.
      * 
      * @return The magic text that starts every OpenSSL encrypted String
@@ -314,6 +328,9 @@ public class KeyCrypterOpenSSL {
             return true;
         if (obj == null)
             return false;
-        return (obj instanceof KeyCrypterOpenSSL);
+        if (!(obj instanceof KeyCrypterOpenSSL))
+            return false;
+        return true;
     }
+
 }

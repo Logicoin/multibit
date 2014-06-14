@@ -22,10 +22,10 @@ import javax.swing.Action;
 import javax.swing.ImageIcon;
 
 import org.multibit.controller.Controller;
-import org.multibit.controller.bitcoin.BitcoinController;
-import org.multibit.model.bitcoin.WalletAddressBookData;
-import org.multibit.model.bitcoin.BitcoinModel;
-import org.multibit.model.bitcoin.WalletData;
+import org.multibit.controller.logicoin.BitcoinController;
+import org.multibit.model.logicoin.WalletAddressBookData;
+import org.multibit.model.logicoin.BitcoinModel;
+import org.multibit.model.logicoin.WalletData;
 import org.multibit.utils.WhitespaceTrimmer;
 import org.multibit.viewsystem.swing.view.panels.SendBitcoinPanel;
 
@@ -77,7 +77,7 @@ public class PasteAddressAction extends AbstractAction {
             String stringToPaste = textTransfer.getClipboardContents();
             stringToPaste = WhitespaceTrimmer.trim(stringToPaste);
 
-            // TODO parse string - if bitcoin URI then fill out other fields
+            // TODO parse string - if logicoin URI then fill out other fields
 
             String label = sendBitcoinPanel.getLabelTextArea().getText();
             WalletAddressBookData addressBookData = new WalletAddressBookData(label, stringToPaste);

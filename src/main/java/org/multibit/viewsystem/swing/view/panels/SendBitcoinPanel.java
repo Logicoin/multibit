@@ -15,14 +15,14 @@
  */
 package org.multibit.viewsystem.swing.view.panels;
 
-import com.google.bitcoin.core.Address;
-import com.google.bitcoin.core.AddressFormatException;
-import com.google.bitcoin.core.Utils;
-import org.multibit.controller.bitcoin.BitcoinController;
+import com.google.logicoin.core.Address;
+import com.google.logicoin.core.AddressFormatException;
+import com.google.logicoin.core.Utils;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.exchange.CurrencyConverter;
 import org.multibit.exchange.CurrencyConverterResult;
-import org.multibit.model.bitcoin.BitcoinModel;
-import org.multibit.model.bitcoin.WalletAddressBookData;
+import org.multibit.model.logicoin.BitcoinModel;
+import org.multibit.model.logicoin.WalletAddressBookData;
 import org.multibit.model.core.CoreModel;
 import org.multibit.utils.ImageLoader;
 import org.multibit.viewsystem.DisplayHint;
@@ -439,7 +439,7 @@ public class SendBitcoinPanel extends AbstractTradePanel implements Viewable {
     if (Boolean.TRUE.toString().equalsIgnoreCase(performPasteNow)) {
       try {
         Address decodeAddress = new Address(this.bitcoinController.getModel().getNetworkParameters(), address);
-        processDecodedString(com.google.bitcoin.uri.BitcoinURI.convertToBitcoinURI(decodeAddress, Utils.toNanoCoins(amountNotLocalised), label, null), null);
+        processDecodedString(com.google.logicoin.uri.BitcoinURI.convertToBitcoinURI(decodeAddress, Utils.toNanoCoins(amountNotLocalised), label, null), null);
         this.bitcoinController.getModel().setActiveWalletPreference(BitcoinModel.SEND_PERFORM_PASTE_NOW, "false");
         sendButton.requestFocusInWindow();
 

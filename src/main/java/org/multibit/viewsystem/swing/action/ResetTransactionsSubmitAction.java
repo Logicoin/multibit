@@ -15,12 +15,12 @@
  */
 package org.multibit.viewsystem.swing.action;
 
-import com.google.bitcoin.core.Transaction;
-import org.multibit.controller.bitcoin.BitcoinController;
+import com.google.logicoin.core.Transaction;
+import org.multibit.controller.logicoin.BitcoinController;
 import org.multibit.file.WalletSaveException;
 import org.multibit.message.Message;
 import org.multibit.message.MessageManager;
-import org.multibit.model.bitcoin.WalletData;
+import org.multibit.model.logicoin.WalletData;
 import org.multibit.network.ReplayManager;
 import org.multibit.network.ReplayTask;
 import org.multibit.utils.DateUtils;
