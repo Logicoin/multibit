@@ -346,7 +346,7 @@ public class MultiBitService {
       } else {
         peerGroup.addPeerDiscovery(new DnsDiscovery(networkParameters));
       }*/
-        //LGC: Only production for now.
+        //LOGIC: Only production for now.
         peerGroup.addPeerDiscovery(new DnsDiscovery(networkParameters));
     }
     // Add the controller as a PeerEventListener.
@@ -378,7 +378,7 @@ public class MultiBitService {
       return MULTIBIT_PREFIX + SEPARATOR + TESTNET_PREFIX;
     } else {*/
       return MULTIBIT_PREFIX;
-    //} //TODO LGC: No testnet...
+    //} //TODO LOGIC: No testnet...
   }
 
   /**

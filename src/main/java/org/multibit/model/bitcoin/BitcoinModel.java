@@ -94,7 +94,7 @@ public class BitcoinModel extends AbstractModel<CoreModel> {
     public static final BigInteger SEND_MINIMUM_FEE = new BigInteger("100000000");
 
     // Maximum fee.
-    public static final BigInteger SEND_MAXIMUM_FEE = new BigInteger("100000000000"); // 1000 LGC. Hope it won't ever go above du to bogus transactions.
+    public static final BigInteger SEND_MAXIMUM_FEE = new BigInteger("100000000000"); // 1000 LOGIC. Hope it won't ever go above du to bogus transactions.
 
     // Receive logicoin.
     public static final String IS_RECEIVE_BITCOIN = "isReceiveBitcoin";

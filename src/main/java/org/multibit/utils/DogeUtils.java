@@ -18,7 +18,7 @@ public class DogeUtils {
 
     private static Logger log = LoggerFactory.getLogger(DogeUtils.class);
 
-    private static final URL LGCPOOL_URL;
+    private static final URL LOGICPOOL_URL;
     private static final URL CRYPTSY_URL;
     private static final URL VIRCUREX_URL;
 
@@ -26,9 +26,9 @@ public class DogeUtils {
     {
         try
         {
-            LGCPOOL_URL = new URL("http://dogepool.com/lastdoge");
+            LOGICPOOL_URL = new URL("http://dogepool.com/lastdoge");
             CRYPTSY_URL = new URL("http://pubapi.cryptsy.com/api.php?method=singlemarketdata&marketid=132");
-            VIRCUREX_URL = new URL("https://vircurex.com/api/get_last_trade.json?base=LGC&alt=BTC");
+            VIRCUREX_URL = new URL("https://vircurex.com/api/get_last_trade.json?base=LOGIC&alt=BTC");
         }
         catch (final MalformedURLException x)
         {
@@ -42,7 +42,7 @@ public class DogeUtils {
 
         try
         {
-            connection = (HttpURLConnection) LGCPOOL_URL.openConnection();
+            connection = (HttpURLConnection) LOGICPOOL_URL.openConnection();
             connection.setConnectTimeout(Constants.HTTP_TIMEOUT_MS);
             connection.setReadTimeout(Constants.HTTP_TIMEOUT_MS);
             connection.connect();
@@ -66,7 +66,7 @@ public class DogeUtils {
             }
             else
             {
-                log.debug("http status " + responseCode + " when fetching " + LGCPOOL_URL);
+                log.debug("http status " + responseCode + " when fetching " + LOGICPOOL_URL);
             }
         }
         catch (final Exception x)

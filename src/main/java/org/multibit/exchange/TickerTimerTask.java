@@ -249,11 +249,11 @@ public class TickerTimerTask extends TimerTask {
                                 }
                             }
 
-                            log.debug("Getting LGC conversion");
+                            log.debug("Getting LOGIC conversion");
                             float dogeRate = DogeUtils.requestDogeBtcConversion();
                             if (dogeRate == 0f)
                             {
-                                log.debug("Problem getting LGC conversion");
+                                log.debug("Problem getting LOGIC conversion");
                                 return;
                             }
 
